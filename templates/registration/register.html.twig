@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% import 'utils.twig' as utils %}
+
+{% block stylesheets %}
+<style>
+@import url(/css/components/checkbox.css) layer(base);
+@import url(/css/components/buttons.css) layer(base);
+@import url(/css/components/inputs.css) layer(base);
+@import url(/css/components/form.css) layer(base);
+
+@layer content {
+    .register--banner {
+        width: 570px;
+        background-image: url(/img/playa.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+}
+</style>
+{% endblock %}
+
+{% block title %}Registro{% endblock %}
+
+{% block body %}
+    <div class="flex-h gap-3 h-100">
+        <div class="register--banner flex-v jc-c ai-e br-end-8">
+            <h2 class="blend-luminosity w-minc font-di-n py-3 px-5 bg-cmt-400 br-start-3 text-white">Unete a Nosotros!</h2>
+        </div>
+        <div class="fill flex-v">
+            <div class="flex-v m-auto">
+                <div class="flex-h pos-rel">
+                    <div class="pos-abs flex-v jc-c t-0 l-0 b-0">
+                        <button type="button" class="back--button button-reset cur-p text-pb-600">
+                            {{ utils.icon('arrow-left.svg.twig') }}
+                        </button>
+                    </div>
+                    <h1 class="font-he-b text-pb-600 fill text-c">Registrate</h1>
+                </div>
+                {% for flash_error in app.flashes('verify_email_error') %}
+                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                {% endfor %}
+                {{ form_start(registrationForm) }}
+                {{ form_errors(registrationForm) }}
+                {{ form_row(registrationForm.first_name) }}
+                {{ form_row(registrationForm.last_name) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Contraseña'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms, {attr: {class: 'text-pb-600'}}) }}
+
+                    <button type="submit" class="button-complex">Registrarse</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

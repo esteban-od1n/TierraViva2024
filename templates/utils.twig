@@ -1,0 +1,5 @@
+{% macro icon(file, size = 24) %}
+    {%- set class = 'icon' -%}
+    {{ include("icons/" ~ file) }}
+{% endmacro %}
+

@@ -1,0 +1,117 @@
+{# templates/form/form_theme.html.twig #}
+{%- use 'form_div_layout.html.twig' -%}
+
+{%- block form_start -%}
+    {%- do form.setMethodRendered() -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    {% set attr = attr|merge({
+        class: class(attr.class is defined? attr.class)
+            .add('flex-v gap-3 ai-c')
+    }) %}
+
+    <form {{ attrs({
+            name: name,
+            method: form_method|lower,
+            action: action,
+            enctype: multipart? "multipart/form-data"
+        }) }} {{ attrs(attr) }}>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{%- endblock -%}
+
+{%- block form_errors -%}
+    {%- import "utils.twig" as utils -%}
+    {%- if errors|length > 0 -%}
+    <ul class="font-lb-b text-error-800 m-0 field--errors">
+        {%- for error in errors -%}
+            <li class="flex-h gap-2 ai-c">
+                {{ utils.icon('warning-circle-solid.svg.twig') }}
+                <span>{{ error.message }}</span>
+            </li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block form_row -%}
+    {% set attr = attr|merge({ 
+        class: class(attr.class is defined? attr.class)
+            .add('field flex-v gap-3 ai-c br-2')
+            .add(errors is not empty? 'field-bad py-3 px-3')
+    }) %}
+    <div {{ attrs(attr) }}>
+        {{- form_errors(form) -}}
+        {{- form_widget(form, {
+            attr: { placeholder: field_label(form) }
+        }) -}}
+    </div>
+{%- endblock -%}
+
+{%- block checkbox_row -%}
+    {% set attr = attr|merge({ 
+        class: class(attr.class is defined? attr.class)
+            .add('field flex-v gap-3 ai-c br-2')
+            .add(errors is not empty? 'field-bad py-3 px-3'),
+    }) %}
+    <div {{ attrs(attr) }}>
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock -%}
+
+{%- block checkbox_widget -%}
+    {%- import "utils.twig" as utils -%}
+    {% set attr = attr|merge({ 
+        class: class(attr.class is defined? attr.class)
+            .add('field flex-v gap-3 ai-c br-2')
+            .add(errors is not empty? 'field-bad py-3 px-3'),
+    }) %}
+    <label class="custom-checkbox flex-h gap-1 ai-c">
+        {{- utils.icon('square.svg.twig') -}}
+        {{- utils.icon('check-square-solid.svg.twig') -}}
+        <input type="checkbox" {{ attrs({
+            id: id,
+            name: full_name,
+            disabled: disabled is defined? disabled,
+            value: value is defined? value,
+            checked: checked is defined? checked : false,
+        }) }} {{ attrs(attr) }}/>
+        <span class="font-lb-b">{{- field_label(form) -}}</span>
+    </label>
+{%- endblock -%}
+
+{%- block form_widget -%}
+    {% if compound %}
+        {{- block('form_widget_compound') -}}
+    {% else %}
+        {{- block('form_widget_simple') -}}
+    {% endif %}
+{%- endblock form_widget -%}
+
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {%- if type == 'range' or type == 'color' -%}
+        {# Attribute "required" is not supported #}
+        {%- set required = false -%}
+    {%- endif -%}
+    {% set attr = attr|merge({ 
+        class: class(attr.class is defined? attr.class)
+            .add('field flex-v gap-3 ai-c br-2')
+            .add(errors is not empty? 'field-bad py-3 px-3'),
+    }) %}
+    <input {{ attrs({
+        id: id,
+        name: full_name,
+        disabled: disabled is defined? disabled,
+        value: value is defined? value,
+        checked: checked is defined? checked : false,
+        type: type,
+        required: required,
+    }) }} {{ attrs(attr) }} />
+{%- endblock form_widget_simple -%}

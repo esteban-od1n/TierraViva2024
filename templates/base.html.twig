@@ -1,0 +1,19 @@
+{% import "utils.twig" as utils %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Tierraviva{% endblock %}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/main.css" />
+        <link rel="icon" href="/favicon.svg" />
+        {% block stylesheets -%}{%- endblock %}
+        
+        <script type="module" defer src="/js/main.js"></script>
+        {% block javascripts -%}{%- endblock %}
+    </head>
+    <body class="">
+    </body>
+</html>
