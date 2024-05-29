@@ -10,7 +10,7 @@ class Index extends AbstractController {
 
     #[Route(path: '/', name: 'index')]
     public function content(): Response {
-        return $this->render('index.html.twig');
+        return $this->render('pages/index.html.twig');
     }
 
 }

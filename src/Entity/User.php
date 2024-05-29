@@ -37,15 +37,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\Column(length: 255)]
-    private ?string $first_name = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $last_name = null;
-
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Node $node = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
@@ -132,42 +123,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->first_name;
-    }
-
-    public function setFirstName(string $first_name): static
-    {
-        $this->first_name = $first_name;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->last_name;
-    }
-
-    public function setLastName(string $last_name): static
-    {
-        $this->last_name = $last_name;
-
-        return $this;
-    }
-
-    public function getNode(): ?Node
-    {
-        return $this->node;
-    }
-
-    public function setNode(?Node $node): static
-    {
-        $this->node = $node;
 
         return $this;
     }
