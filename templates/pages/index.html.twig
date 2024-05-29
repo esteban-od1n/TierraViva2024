@@ -8,4 +8,18 @@
 
 {% block body %}
 {% include 'components/slider.html.twig' %}
+<div class="flex flex-col py-5 gap-3 items-center">
+    <h1 class="font-heading text-3xl text-pistachio-500 text-center">CONOCE LAS HERRAMIENTAS PARA HACERLO TU MISMO</h1>
+    <p class="font-body text-center">
+         Encuentra una variedad de contenido en nuestro apartado de recursos, desde videos hasta documentos.
+    </p>
+    {% include 'components/button.html.twig' with { text: 'Recursos' } only %}
+    <div class="flex flex-row gap-3">
+        {% include 'components/mini-card.html.twig' with { text: 'Tipos de plantas', img: 'imgs/semillas.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Herramientas', img: 'imgs/herramientas.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Cuidados', img: 'imgs/cuidados.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Amenazas', img: 'imgs/ameanzas.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Reutiliza', img: 'imgs/llave.png' } only %}
+    </div>
+</div>
 {% endblock %}
