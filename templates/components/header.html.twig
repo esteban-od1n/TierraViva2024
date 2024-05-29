@@ -1,0 +1,19 @@
+{% set current_path = app.request.get('_route') -%}
+{% macro nav_item(ref, text, is_active = false) %}
+<a class="font-label text-xl {{ is_active? 'text-pistachio-400' }}" href={{ ref }}>{{ text }}</a>
+{% endmacro -%}
+
+<header class="flex flex-row bg-timber-green-900 py-3 px-10 items-center">
+    <div class="flex flex-row items-center">
+        <img src="/icon.png" class="max-h-16" />
+        <img src="/logo.svg" class="max-h-8" />
+    </div>
+    <nav class="flex flex-row items-center gap-6 text-white flex-1 justify-center">
+        {{ _self.nav_item('/', 'Inicio', current_path == 'index') }}
+        {{ _self.nav_item('/recursos', 'Recursos', current_path == 'resources') }}
+        {{ _self.nav_item('/mapa', 'Mapa Interactivo', current_path == 'map') }}
+        {{ _self.nav_item('/proveedores', 'Proveedores', current_path == 'providers') }}
+        {{ _self.nav_item('/foro', 'Foro', current_path == 'forum') }}
+    </nav>
+    {% include 'components/button.html.twig' with { text: 'Registrarse' } only %}
+</header>

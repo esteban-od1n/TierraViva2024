@@ -1,0 +1,10 @@
+{% if href is defined -%} <a {% else -%} <button {% endif -%} class="flex flex-row gap-2 items-center bg-transparent border-2 border-pistachio-400 text-pistachio-400 px-6 py-3 font-label {{isPill is defined? 'rounded-full' : 'rounded-xl'}}
+    hover:bg-pistachio-400 hover:text-timber-green-950">
+    {% if lIcon is defined %}
+    {% include 'icons/' ~ lIcon %}
+    {% endif %}
+    <span>{{ text|default('') }}</span>
+    {% if rIcon is defined %}
+    {% include 'icons/' ~ rIcon %}
+    {% endif %}
+    {% if href is defined -%} </a> {% else -%} </button> {% endif -%}
