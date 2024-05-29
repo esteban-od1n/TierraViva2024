@@ -22,4 +22,37 @@
         {% include 'components/mini-card.html.twig' with { text: 'Reutiliza', img: 'imgs/llave.png' } only %}
     </div>
 </div>
+<div
+    class="flex flex-col py-6 relative before:top-0 before:left-0 items-center z-0
+    before:w-full before:h-full before:absolute before:bg-things-pattern before:bg-repeat before:opacity-30 before:bg-center before:-z-10">
+    <h1 class="font-heading text-3xl text-pistachio-500 text-center py-2 px-5 bg-pistachio-50 rounded-3xl">SOBRE
+        NOSOTROS</h1>
+    <div class="flex flex-row justify-center">
+        <img src="/imgs/smrithi-rao_Sobrenosotros.jpg" alt="sobrenosotros_exmp"
+            class="w-3/12 h-80 rounded-xl object-cover">
+        <p class="py-2 px-5 bg-pistachio-50 rounded-3xl w-6/12">
+            ¡Te damos la bienvenida a Tierra Viva!<br>
+            Somos tu plataforma especializada en agricultura urbana y sostenibilidad.</br>
+            <br>
+            Nuestra misión es inspirar y capacitar a las comunidades para que se conecten con la naturaleza y adopten
+            prácticas sostenibles. <br>
+            <br>
+            Descubre nuestra amplia gama de recursos, que incluyen desde vídeos educativos hasta documentos detallados.
+            Utiliza nuestro mapa interactivo para encontrar jardines y viveros cercanos, y visita nuestra sección de
+            proveedores para contactar con especialistas locales que ofrecen productos y asesoramiento de calidad. <br>
+            <br>
+            Participa en nuestro foro, donde podrás compartir experiencias, obtener consejos y debatir sobre temas
+            relevantes con otros entusiastas. <br>
+            <br>
+            Únete a Tierra Viva y forma parte de un cambio positivo hacia un futuro más verde.
+        </p>
+    </div>
+</div>
+<div class="flex flex-row gap-4 py-6 justify-center">
+    {% include 'components/mid-card.html.twig' with { text: 'Mapa interactivo', img: 'imgs/mapa-feature.png' } only
+    %}
+    {% include 'components/mid-card.html.twig' with { text: 'Proveedores', img: 'imgs/provee-feature.png' } only %}
+    {% include 'components/mid-card.html.twig' with { text: 'Foro comunitario', img: 'imgs/world-feature.png' } only
+    %}
+</div>
 {% endblock %}

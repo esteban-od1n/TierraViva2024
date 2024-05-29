@@ -15,5 +15,5 @@
         {{ _self.nav_item('/proveedores', 'Proveedores', current_path == 'providers') }}
         {{ _self.nav_item('/foro', 'Foro', current_path == 'forum') }}
     </nav>
-    {% include 'components/button.html.twig' with { text: 'Registrarse' } only %}
+    {% include 'components/button.html.twig' with { text: 'Registrarse', href: '/registro' } only %}
 </header>

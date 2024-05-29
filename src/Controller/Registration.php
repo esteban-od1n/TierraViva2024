@@ -24,7 +24,7 @@ class Registration extends AbstractController
     {
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/registro', name: 'app_register')]
     public function register(
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
@@ -51,7 +51,7 @@ class Registration extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@proplayas.org', 'Proplayas'))
+                    ->from(new Address('noreply@tierraviva.org', 'Tierraviva'))
                     ->to($user->getEmail())
                     ->subject('Por favor, confirma tu correo electrónico')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -65,7 +65,7 @@ class Registration extends AbstractController
         ]);
     }
 
-    #[Route('/verify/email', name: 'app_verify_email')]
+    #[Route('/verificar-mail', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

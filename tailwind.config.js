@@ -105,6 +105,9 @@ export default {
                     '100%': { transform: 'scale(1.15)' }
                 }
             },
+            backgroundImage: {
+                'things-pattern': "url(/public/imgs/pattern.png)",
+            },
         },
     },
     plugins: [],

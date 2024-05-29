@@ -1,96 +1,75 @@
 {%- extends 'base.html.twig' -%}
-{%- import "utils.twig" as utils -%}
 
 {%- block title -%}Inicio de Sesion{%- endblock -%}
 
-{%~ block stylesheets ~%}
-<style>
-    @import url(/css/components/checkbox.css) layer(base);
-
-    @layer content {
-        .login--banner {
-            width: 570px;
-            background-image: url(/img/tortuga.jpg);
-            background-position: center;
-            background-size: cover;
-        }
-    }
-</style>
-{%~ endblock ~%}
-
 {%~ block body ~%}
-    <div class="flex-h gap-3 h-100">
-        <div class="login--banner flex-v jc-c ai-e br-end-8">
-            <h2 class="blend-luminosity font-di-n py-3 px-5 w-fc bg-cmt-400 br-start-3 text-white">Bienvenido!</h2>
-        </div>
-        <div class="fill flex-v">
-            <form class="flex-v m-auto" method="post">
-                <div class="flex-v">
-                    {%- if error -%}
-                        {% embed 'components/alert.html.twig' %}
-                            {% block content %}{{ error.messageKey|trans(error.messageData, 'security') }}{% endblock %}
-                        {% endembed %}
-                    {%- endif -%}
-                    {%- if app.user -%}
-                        {% embed 'components/alert.html.twig' %}
-                            {% block content -%}
-                                Estás conectado como {{ app.user.userIdentifier }}, <a class="text-pb-300" href="{{ path('app_logout') }}">Salir</a>
-                            {%- endblock %}
-                        {% endembed %}
-                    {%- endif -%}
-                </div>
-                
-                <div class="flex-h pos-rel">
-                    <div class="pos-abs t-0 b-0 -l-3 flex-v jc-c">
-                        <button type="button" class="back--button button-reset cur-p text-pb-600">
-                            {{ utils.icon('arrow-left.svg.twig') }}
-                        </button>
-                    </div>
-                    <h1 class="font-he-b text-pb-600 fill text-c">Inicia Sesion</h1>
-                </div>
-                <div class="flex-v gap-3 ai-c">
-                    {% include 'components/input.html.twig' with {
-                        placeholder: "Correo",
-                        type: 'email',
-                        value: last_username,
-                        name: '_username',
-                        id: 'username',
-                        autocomplete: 'email',
-                        required: true, autofocus: true
-                    } only %}
-                    {% include 'components/input.html.twig' with {
-                        placeholder: 'Contrase',
-                        type: 'email',
-                        value: last_username,
-                        name: '_username',
-                        id: 'username',
-                        autocomplete: 'email',
-                        required: true, autofocus: true
-                    } only %}
-                    <input placeholder="Contraseña" 
-                        type="password" 
-                        name="_password" 
-                        id="password" 
-                        class="input-simple" 
-                        autocomplete="current-password" 
-                        required>
-                    <label class="custom-checkbox flex-h mb-3 gap-1 ai-c text-pb-600">
-                        {{ utils.icon('square.svg.twig') }}
-                        {{ utils.icon('check-square-solid.svg.twig') }}
-                        <input type="checkbox" name="_remember_me"> 
-                        <span class="font-lb-b">Recuerdame</span>
-                    </label>
-                    {% embed './components/button.html.twig' with { 
-                        isComplex: true, 
-                        attr: { type: "submit" } 
-                    } -%}
-                        {% block content %}Iniciar Sesion{% endblock %}
-                    {%- endembed %}
-                    <a href="/reset-password" class="font-lb-b text-pb-300">Olvide mi contraseña</a>
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}">
-                </div>
-            </form>
-        </div>
+<div class="flex-h gap-3 h-100">
+    <div class="login--banner flex-v jc-c ai-e br-end-8">
+        <h2 class="blend-luminosity font-di-n py-3 px-5 w-fc bg-cmt-400 br-start-3 text-white">Bienvenido!</h2>
     </div>
+    <div class="fill flex-v">
+        <form class="flex-v m-auto" method="post">
+            <div class="flex-v">
+                {%- if error -%}
+                {% embed 'components/alert.html.twig' %}
+                {% block content %}{{ error.messageKey|trans(error.messageData, 'security') }}{% endblock %}
+                {% endembed %}
+                {%- endif -%}
+                {%- if app.user -%}
+                {% embed 'components/alert.html.twig' %}
+                {% block content -%}
+                Estás conectado como {{ app.user.userIdentifier }}, <a class="text-pb-300"
+                    href="{{ path('app_logout') }}">Salir</a>
+                {%- endblock %}
+                {% endembed %}
+                {%- endif -%}
+            </div>
+
+            <div class="flex-h pos-rel">
+                <div class="pos-abs t-0 b-0 -l-3 flex-v jc-c">
+                    <button type="button" class="back--button button-reset cur-p text-pb-600">
+                        {{ utils.icon('arrow-left.svg.twig') }}
+                    </button>
+                </div>
+                <h1 class="font-he-b text-pb-600 fill text-c">Inicia Sesion</h1>
+            </div>
+            <div class="flex-v gap-3 ai-c">
+                {% include 'components/input.html.twig' with {
+                placeholder: "Correo",
+                type: 'email',
+                value: last_username,
+                name: '_username',
+                id: 'username',
+                autocomplete: 'email',
+                required: true, autofocus: true
+                } only %}
+                {% include 'components/input.html.twig' with {
+                placeholder: 'Contrase',
+                type: 'email',
+                value: last_username,
+                name: '_username',
+                id: 'username',
+                autocomplete: 'email',
+                required: true, autofocus: true
+                } only %}
+                <input placeholder="Contraseña" type="password" name="_password" id="password" class="input-simple"
+                    autocomplete="current-password" required>
+                <label class="custom-checkbox flex-h mb-3 gap-1 ai-c text-pb-600">
+                    {{ utils.icon('square.svg.twig') }}
+                    {{ utils.icon('check-square-solid.svg.twig') }}
+                    <input type="checkbox" name="_remember_me">
+                    <span class="font-lb-b">Recuerdame</span>
+                </label>
+                {% embed './components/button.html.twig' with {
+                isComplex: true,
+                attr: { type: "submit" }
+                } -%}
+                {% block content %}Iniciar Sesion{% endblock %}
+                {%- endembed %}
+                <a href="/reset-password" class="font-lb-b text-pb-300">Olvide mi contraseña</a>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            </div>
+        </form>
+    </div>
+</div>
 {%- endblock -%}
