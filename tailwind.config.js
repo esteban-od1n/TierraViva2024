@@ -94,8 +94,18 @@ export default {
             label: ['Oswald', 'sans-serif'],
             heading: ['Lalezar', 'system-ui']
         },
-
-        extend: {},
+        extend: {
+            keyframes: {
+                'slide-reveal': {
+                    '0%': { transform: 'translate(30px)', opacity: 0 },
+                    '100%': { transform: 'translate(0px)', opacity: 1 }
+                },
+                'smooth-scale': {
+                    '0%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(1.15)' }
+                }
+            },
+        },
     },
     plugins: [],
 }
