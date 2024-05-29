@@ -1,0 +1,11 @@
+{%- set type = type|default('text') -%}
+{%- if type == 'range' or type == 'color' -%}
+{%- set required = false -%}
+{%- endif -%}
+{%- set disabled = disabled is defined -%}
+{%- set checked = checked is defined -%}
+{%- set required = required is defined -%}
+{%- set class = class(class is defined)
+.add('flex flex-col gap-3 items-center rounded-full py-2 px-4 text-kumera-300 placeholder:text-kumera-300/50
+bg-kumera-900/75 font-label') %}
+<input {{ attrs(_context) }} />

@@ -11,7 +11,7 @@
 {%- endif -%}
 {% set attr = attr|merge({
 class: class(attr.class is defined? attr.class)
-.add('flex flex-col gap-3 items-center')
+.add('flex flex-col gap-2 items-center')
 }) %}
 
 <form {{ attrs({ name: name, method: form_method|lower, action: action, enctype: multipart? "multipart/form-data" }) }}
@@ -89,7 +89,7 @@ class: class(attr.class is defined? attr.class)
     {% set attr = attr|merge({
     class: class(attr.class is defined? attr.class)
     .add('flex flex-col gap-3 items-center rounded-full py-2 px-4 text-kumera-300 placeholder:text-kumera-300/50
-    bg-kumera-700 font-label')
+    bg-kumera-900/75 font-label')
     .add(errors is not empty? 'py-3 px-3'),
     }) %}
     <input {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, value: value is defined? value,

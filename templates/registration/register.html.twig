@@ -4,20 +4,26 @@
 
 {% block body %}
 <div class="flex flex-row gap-3 h-full">
-    <div class="flex flex-col m-auto">
-        {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="" role="alert">{{ flash_error }}</div>
-        {% endfor %}
-        {{ form_start(registrationForm) }}
-        {{ form_errors(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-        label: 'Contraseña'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms, {attr: {class: 'text-pb-600'}}) }}
-
-        {% include 'components/button.html.twig' with { text: 'Registrarse', isPill: true } only %}
-        {{ form_end(registrationForm) }}
+    <img src="/imgs/flor-caminando.png" />
+    <div class="flex flex-row m-auto p-6 bg-lochinvar-100 rounded-xl">
+        <div class="flex flex-col justify-center w-80">
+            <h1 class="font-heading text-3xl text-center mb-4 text-lochinvar-700">REGISTRO</h1>
+            {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            {{ form_start(registrationForm) }}
+            {{ form_errors(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+            label: 'Contraseña'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms, {attr: {class: 'text-pb-600'}}) }}
+            <div class="flex flex-row items place-content-between gap-3">
+                <a href="/login" class="font-label text-sm text-lochinvar-500">¿Ya tienes cuenta?</a>
+            </div>
+            {% include 'components/button.html.twig' with { text: 'Registrarse', isPill: true } only %}
+            {{ form_end(registrationForm) }}
+        </div>
     </div>
 </div>
 {% endblock %}
