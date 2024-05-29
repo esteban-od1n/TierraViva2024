@@ -11,9 +11,23 @@
         <link rel="icon" href="/favicon.svg" />
         {% block stylesheets -%}{%- endblock %}
         
-        <script type="module" defer src="/js/main.js"></script>
+        <script type="module" defer src="/main.js"></script>
         {% block javascripts -%}{%- endblock %}
     </head>
     <body class="">
+        <div class="preload" data-preaload> 
+            <div class="circle"></div>
+            <p class="text">Tierra Viva</p>
+        </div>
+        <!--header-->
+        <header class="header" data-header>{% include 'components/navbar.html.twig' %}</header>
+        <main>{% block body %}{% endblock %}</main>
+
+        <footer>{% include 'components/footer.html.twig' %}</footer>
+        <a href="#top" class="back-top-btn" aria-label="backt to top" data-back-top-btn>
+            <ion-icon name="chevron-up-outline" aria-hidden="true"></ion-icon>
+        </a>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>
