@@ -1,0 +1,29 @@
+{% extends 'base.html.twig'%}
+{% block body %}
+   
+<div class="flex flex-col py-5 gap-3 items-center">
+    <h1 class="font-heading text-3xl text-pistachio-500 text-center">BUSQUEDA POR CATEGORIAS</h1>
+    <div class="flex flex-row gap-3">
+        {% include 'components/mini-card.html.twig' with { text: 'Semillas', img: 'imgs/cardamom.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Plantas', img: 'imgs/peppercorn.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Frutas', img: 'imgs/fruits.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Verduras', img: 'imgs/paprika.png' } only %}
+        {% include 'components/mini-card.html.twig' with { text: 'Herramientas', img: 'imgs/trimming.png' } only %}
+    </div>
+</div>
+
+<section class="video mt-[30px] xl:mt-[50px] relative z-20">
+  <h1 class="font-heading text-3xl text-buttercup-500 text-center">Videos más vistos</h1>
+  <div class="container mx-auto px-4">
+    <div class="video__grid grid grid-cols-1 xl:grid-cols-3 gap-[27px] justify-items-center">
+        <div class="video__item w-full max-w-[382px] h-[520px] border border-buttercup-500 rounded-[42px] p-[28px] hover:bg-buttercup-100 hover:border-buttercup-100 transition-all group cursor-pointer mx-auto xl:mx-0">
+            <img class="mb-5 rounded-t-[22px]" src="imgs/pille-r-priske-nosotros.jpg"></img>
+        </div>
+        <div>Video</div>
+        <div>Video</div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
