@@ -3,7 +3,7 @@
    
 <div class="flex flex-col py-5 gap-3 items-center">
     <h1 class="font-heading text-3xl text-pistachio-500 text-center">BUSQUEDA POR CATEGORIAS</h1>
-    <div class="flex flex-row gap-3">
+    <div class="flex flex-row gap-3 cursor-pointer">
         {% include 'components/mini-card.html.twig' with { text: 'Semillas', img: 'imgs/cardamom.png' } only %}
         {% include 'components/mini-card.html.twig' with { text: 'Plantas', img: 'imgs/peppercorn.png' } only %}
         {% include 'components/mini-card.html.twig' with { text: 'Frutas', img: 'imgs/fruits.png' } only %}
@@ -12,18 +12,119 @@
     </div>
 </div>
 
-<section class="video mt-[30px] xl:mt-[50px] relative z-20">
-  <h1 class="font-heading text-3xl text-buttercup-500 text-center">Videos más vistos</h1>
-  <div class="container mx-auto px-4">
-    <div class="video__grid grid grid-cols-1 xl:grid-cols-3 gap-[27px] justify-items-center">
-        <div class="video__item w-full max-w-[382px] h-[520px] border border-buttercup-500 rounded-[42px] p-[28px] hover:bg-buttercup-100 hover:border-buttercup-100 transition-all group cursor-pointer mx-auto xl:mx-0">
-            <img class="mb-5 rounded-t-[22px]" src="imgs/pille-r-priske-nosotros.jpg"></img>
+<section class="py-10 flex justify-center items-center">
+  <div class="flex flex-wrap justify-center gap-5">
+    <div class="bg-white shadow-lg rounded-3xl p-6 max-w-sm">
+      <img class="rounded-lg w-full h-64 object-cover" src="imgs/videochica.png" alt="Video Chica" />
+      <div class="mt-4">
+        <div class="text-xl font-semibold text-left">Lorem ipsum dolor sit amet</div>
+        <div class="text-base text-left text-gray-600">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. 
+          Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.
         </div>
-        <div>Video</div>
-        <div>Video</div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-3xl p-6 max-w-sm">
+      <img class="rounded-lg w-full h-64 object-cover" src="imgs/videochico.png" alt="Video Chico" />
+      <div class="mt-4">
+        <div class="text-xl font-semibold text-left">Lorem ipsum dolor sit amet</div>
+        <div class="text-base text-left text-gray-600">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. 
+          Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-3xl p-6 max-w-sm">
+      <img class="rounded-lg w-full h-64 object-cover" src="imgs/videochica.png" alt="Video Chica" />
+      <div class="mt-4">
+        <div class="text-xl font-semibold text-left">Lorem ipsum dolor sit amet</div>
+        <div class="text-base text-left text-gray-600">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. 
+          Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="py-16 text-center">
+  <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Marcas Locales</h2>
+  <div class="flex flex-wrap justify-center gap-6">
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/fresasor.png" alt="Fresas Orgánicas" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+        <div class="text-gray-700">Fresas Orgánicas</div>
+        <div class="text-lg font-bold text-green-500">$500</div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/elote.png" alt="Maíz Dulce" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+        <div class="text-gray-700">Maíz Dulce</div>
+        <div class="text-lg font-bold text-green-500">$600</div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/miel.png" alt="Miel Orgánica" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+        <div class="text-gray-700">Miel Orgánica</div>
+        <div class="text-lg font-bold text-green-500">$500</div>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/pera.png" alt="Pera Dulce" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+        <div class="text-gray-700">Pera Dulce</div>
+        <div class="text-lg font-bold text-green-500">$600</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 text-center">
+  <h2 class="text-4xl font-bold mb-10 text-pancho-500">Más Vendidos</h2>
+  <div class="flex flex-wrap justify-center gap-6">
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/mermelada.png" alt="Mermelada de Fresa" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-gray-700">Mermelada de Fresa</div>
+        <div class="text-lg font-bold text-green-500">$500</div>
+        <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600">Comprar</button>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/arandanos.png" alt="Arándanos Orgánicos" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-gray-700">Arándanos Orgánicos</div>
+        <div class="text-lg font-bold text-green-500">$600</div>
+        <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600">Comprar</button>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/cookies.png" alt="Galletas Caseras" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-gray-700">Galletas Caseras</div>
+        <div class="text-lg font-bold text-green-500">$400</div>
+        <button class="mt-4 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600">Comprar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 {% endblock %}
