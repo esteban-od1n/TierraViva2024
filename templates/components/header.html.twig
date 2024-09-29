@@ -12,7 +12,7 @@
         {{ _self.nav_item('/', 'Inicio', current_path == 'index') }}
         {{ _self.nav_item('/recursos', 'Recursos', current_path == 'resources') }}
         {{ _self.nav_item('/mapa', 'Mapa Interactivo', current_path == 'map') }}
-        {{ _self.nav_item('/proveedores', 'Proveedores', current_path == 'providers') }}
+        {{ _self.nav_item('/providers', 'Proveedores', current_path == 'providers') }}
         {{ _self.nav_item('/foro', 'Foro', current_path == 'forum') }}
     </nav>
     {% include 'components/button.html.twig' with { text: 'Registrarse', href: '/registro' } only %}
