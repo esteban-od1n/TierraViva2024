@@ -1,18 +1,92 @@
 {% extends 'base.html.twig'%}
 {% block body %}
-    <section class="bg-white py-10">
+    <section class="bg-white py-10 items-center">
         <h2 class="text-center text-buttercup-500 font-bold text-3xl">Los más populares 🔥</h2>
-        <div class="flex space-x-4 overflow-x-auto mt-6 px-4">
-            <!-- Tarjeta de ejemplo para Cultivo Urbano -->
+        <div class="flex space-x-4 overflow-x-auto mt-6 px-4 justify-center">
             <div class="min-w-[300px] max-w-[300px]">
-                <img src="cultivo_urbano.jpg" class="rounded-lg" alt="Cultivo Urbano">
+                <img src="imgs/cultivo-urbano.jpg" class="rounded-lg" alt="Cultivo Urbano">
                 <div class="text-center mt-2">
                     <h3 class="text-timber-green-800 text-lg font-semibold">Cultivo Urbano</h3>
                     <p class="text-sm text-gray-600">4.5 ★</p>
                 </div>
             </div>
-            <!-- Repetir más tarjetas -->
+            <div class="min-w-[300px] max-w-[300px]">
+                <img src="imgs/plaza.jpg" class="rounded-lg" alt="plaza">
+                <div class="text-center mt-2">
+                    <h3 class="text-timber-green-800 text-lg font-semibold">Plaza</h3>
+                    <p class="text-sm text-gray-600">4.5 ★</p>
+                </div>
+            </div>
+            <div class="min-w-[300px] max-w-[300px]">
+                <img src="imgs/encuentros.jpg" class="rounded-lg" alt="encuentros">
+                <div class="text-center mt-2">
+                    <h3 class="text-timber-green-800 text-lg font-semibold">Encuentros</h3>
+                    <p class="text-sm text-gray-600">4.5 ★</p>
+                </div>
+            </div>
         </div>
     </section>
+    <section class="bg-white py-10">
+    <div class="flex justify-center">
+        <div class="w-full max-w-4xl flex space-x-8">
+            <div class="w-1/2">
+                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
+                <ul class="mt-4 space-y-4">
+                    <li class="flex items-start">
+                        <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="Sostenibilidad">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Sostenibilidad y medio ambiente</h3>
+                            <p class="text-sm text-gray-600">Explora cómo podemos cuidar el planeta.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Tecnicas avanzadas">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Técnicas avanzadas de cultivos</h3>
+                            <p class="text-sm text-gray-600">Conoce nuevas técnicas</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="personas">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Problemas y soluciones</h3>
+                            <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="Sostenibilidad">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Sostenibilidad y medio ambiente</h3>
+                            <p class="text-sm text-gray-600">Explora cómo podemos cuidar el planeta.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Tecnicas avanzadas">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Técnicas avanzadas de cultivos</h3>
+                            <p class="text-sm text-gray-600">Conoce nuevas técnicas</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="personas">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">Problemas y soluciones</h3>
+                            <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="w-1/2">
+            <div class="rounded-xl flex flex-col p-4  gap-4">
+                <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
+                    <img src="imgs/world-removebg-preview.png" class="w-70 h-80 mb-4" alt="Mascota">
+                    <p class="text-white text-lg text-center">Explora todo lo que ofrecemos para el futuro del planeta</p>
+                    <button class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Leer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 {% endblock %}
