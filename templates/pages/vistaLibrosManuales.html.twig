@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="bg-white py-10 px-4">
+        <div class="flex justify-between mb-4">
+            <h2 class="text-buttercup-500 font-bold text-3xl">Libros y Manuales Disponibles 📚</h2>
+            <div class="flex items-center">
+                <label for="filter" class="mr-2 text-gray-700">Filtrar por:</label>
+                <select id="filter" class="border rounded px-2 py-1">
+                    <option value="relevante">Más Relevante</option>
+                    <option value="nuevos">Más Nuevos</option>
+                    <option value="viejos">Más Viejos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="https://example.com/libro1" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro1.jpg" class="rounded-lg" alt="Libro 1">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 1</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 1.</p>
+            </a>
+            <a href="https://example.com/libro2" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro2.jpg" class="rounded-lg" alt="Libro 2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 2</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 2.</p>
+            </a>
+            <a href="https://example.com/libro3" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro3.jpg" class="rounded-lg" alt="Libro 3">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 3</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 3.</p>
+            </a>
+            <a href="https://example.com/libro4" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro4.jpg" class="rounded-lg" alt="Libro 4">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 4</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 4.</p>
+            </a>
+            <a href="https://example.com/libro5" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro5.jpg" class="rounded-lg" alt="Libro 5">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 5</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 5.</p>
+            </a>
+            <a href="https://example.com/libro6" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro6.jpg" class="rounded-lg" alt="Libro 6">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 6</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 6.</p>
+            </a>
+            <a href="https://example.com/libro7" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro7.jpg" class="rounded-lg" alt="Libro 7">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 7</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 7.</p>
+            </a>
+            <a href="https://example.com/libro8" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/libro8.jpg" class="rounded-lg" alt="Libro 8">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Libro 8</h3>
+                <p class="text-sm text-gray-600">Descripción breve del libro 8.</p>
+            </a>
+        </div>
+    </section>
+{% endblock %}
