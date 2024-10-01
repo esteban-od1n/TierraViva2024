@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="bg-white py-10 px-4">
+        <div class="flex justify-between mb-4">
+            <h2 class="text-buttercup-500 font-bold text-3xl">Últimas Noticias 📰</h2>
+            <div class="flex items-center">
+                <label for="filter" class="mr-2 text-gray-700">Filtrar por:</label>
+                <select id="filter" class="border rounded px-2 py-1">
+                    <option value="relevante">Más Relevante</option>
+                    <option value="nuevos">Más Nuevos</option>
+                    <option value="viejos">Más Viejos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="/noticia/1" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia1.jpg" class="rounded-lg" alt="Noticia 1">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 1</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 1.</p>
+            </a>
+            <a href="/noticia/2" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia2.jpg" class="rounded-lg" alt="Noticia 2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 2</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 2.</p>
+            </a>
+            <a href="/noticia/3" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia3.jpg" class="rounded-lg" alt="Noticia 3">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 3</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 3.</p>
+            </a>
+            <a href="/noticia/4" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia4.jpg" class="rounded-lg" alt="Noticia 4">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 4</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 4.</p>
+            </a>
+            <a href="/noticia/5" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia5.jpg" class="rounded-lg" alt="Noticia 5">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 5</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 5.</p>
+            </a>
+            <a href="/noticia/6" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia6.jpg" class="rounded-lg" alt="Noticia 6">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 6</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 6.</p>
+            </a>
+            <a href="/noticia/7" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia7.jpg" class="rounded-lg" alt="Noticia 7">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 7</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 7.</p>
+            </a>
+            <a href="/noticia/8" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300" style="padding: 15px;">
+                <img src="imgs/noticia8.jpg" class="rounded-lg" alt="Noticia 8">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título de la Noticia 8</h3>
+                <p class="text-sm text-gray-600">Descripción breve de la noticia 8.</p>
+            </a>
+        </div>
+    </section>
+{% endblock %}
