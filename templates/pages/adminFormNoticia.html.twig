@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="bg-gray-100 py-10">
+    <div class="container mx-auto">
+        <h2 class="text-center text-buttercup-500 font-bold text-3xl mb-8">Agregar Noticias 📰</h2>
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
+            <form>
+                <!-- Frase de la noticia -->
+                <div class="mb-4">
+                    <label for="frase" class="block text-sm font-medium text-gray-700">Frase de la noticia</label>
+                    <input type="text" id="frase" name="frase" required
+                           class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                           placeholder="Ingresa la frase de la noticia">
+                </div>
+
+                <!-- Título de la noticia -->
+                <div class="mb-4">
+                    <label for="titulo" class="block text-sm font-medium text-gray-700">Título de la noticia</label>
+                    <input type="text" id="titulo" name="titulo" required
+                           class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                           placeholder="Ingresa el título de la noticia">
+                </div>
+
+                <!-- Descripción de la noticia -->
+                <div class="mb-4">
+                    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción de la noticia</label>
+                    <textarea id="descripcion" name="descripcion" required rows="4"
+                              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                              placeholder="Ingresa la descripción de la noticia"></textarea>
+                </div>
+
+                <!-- Foto destacada -->
+                <div class="mb-4">
+                    <label for="foto" class="block text-sm font-medium text-gray-700">Foto destacada</label>
+                    <input type="file" id="foto" name="foto" accept="image/*" required
+                           class="mt-1 block w-full border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500">
+                </div>
+
+                <!-- Enlace de la noticia -->
+                <div class="mb-4">
+                    <label for="enlace" class="block text-sm font-medium text-gray-700">Enlace de la noticia</label>
+                    <input type="url" id="enlace" name="enlace" required
+                           class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                           placeholder="Ingresa el enlace de la noticia">
+                </div>
+
+                <!-- Botón de guardar -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                            class="bg-buttercup-500 text-white py-2 px-4 rounded-md hover:bg-buttercup-600 focus:ring-2 focus:ring-buttercup-300 focus:outline-none">Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

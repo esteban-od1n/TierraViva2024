@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<section class="bg-gray-100 py-10">
+    <div class="container mx-auto">
+        <h2 class="text-center text-buttercup-500 font-bold text-3xl mb-8">Agregar Videos 🎥</h2>
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
+            <form>
+                <!-- Título del video -->
+                <div class="mb-4">
+                    <label for="titulo" class="block text-sm font-medium text-gray-700">Título del video</label>
+                    <input type="text" id="titulo" name="titulo" required
+                           class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                           placeholder="Ingresa el título del video">
+                </div>
+
+                <!-- Descripción del video -->
+                <div class="mb-4">
+                    <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción del video</label>
+                    <textarea id="descripcion" name="descripcion" required rows="4"
+                              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                              placeholder="Ingresa la descripción del video"></textarea>
+                </div>
+
+                <!-- Enlace del video -->
+                <div class="mb-4">
+                    <label for="enlace" class="block text-sm font-medium text-gray-700">Enlace del video</label>
+                    <input type="url" id="enlace" name="enlace" required
+                           class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500"
+                           placeholder="Ingresa el enlace del video">
+                </div>
+
+                <!-- Miniatura del video -->
+                <div class="mb-4">
+                    <label for="miniatura" class="block text-sm font-medium text-gray-700">Miniatura del video</label>
+                    <input type="file" id="miniatura" name="miniatura" accept="image/*" required
+                           class="mt-1 block w-full border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500">
+                </div>
+
+                <!-- Categoría del video -->
+                <div class="mb-4">
+                    <label for="categoria" class="block text-sm font-medium text-gray-700">Categoría del video</label>
+                    <select id="categoria" name="categoria" required
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-buttercup-500 focus:border-buttercup-500">
+                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <option value="tutorial">Tutorial</option>
+                        <option value="entrevista">Entrevista</option>
+                        <option value="reseña">Reseña</option>
+                        <option value="noticias">Noticias</option>
+                    </select>
+                </div>
+
+                <!-- Botón de guardar -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                            class="bg-buttercup-500 text-white py-2 px-4 rounded-md hover:bg-buttercup-600 focus:ring-2 focus:ring-buttercup-300 focus:outline-none">Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
