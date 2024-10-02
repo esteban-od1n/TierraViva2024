@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section class="bg-white py-10">
+    <div class="container mx-auto">
+        <h2 class="text-center text-buttercup-500 font-bold text-3xl">Crear una Discusión</h2>
+        <form class="max-w-xl mx-auto mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+                <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título</label>
+                <input type="text" id="titulo" name="titulo" required
+                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="asunto" class="block text-gray-700 text-sm font-bold mb-2">Asunto de la Discusión</label>
+                <textarea id="asunto" name="asunto" required rows="4"
+                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="categoria" class="block text-gray-700 text-sm font-bold mb-2">Categoría de la Discusión</label>
+                <select id="categoria" name="categoria" required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    <option value="duda">Duda</option>
+                    <option value="ayuda">Ayuda</option>
+                    <option value="debate">Debate</option>
+                    <option value="encuentros">Encuentros</option>
+                    <option value="plaza">Plaza</option>
+                    <option value="cultivo urbano">Cultivo Urbano</option>
+                    <option value="colaboración">Colaboración</option>
+                </select>
+            </div>
+            <div class="flex items-center justify-between">
+            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="position: relative; z-index: 10;">
+           Enviar
+            </button>
+
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
