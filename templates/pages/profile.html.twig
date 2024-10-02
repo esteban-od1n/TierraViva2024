@@ -8,16 +8,18 @@
             <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
                 <div class="flex flex-col items-center mb-6">
                     <img src="{{ user.profilePicture|default('imgs/default-profile.png') }}" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-buttercup-500 mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">{{ user.name }}</h3>
-                    <p class="text-gray-600">{{ user.email }}</p>
+                    <h3 class="text-lg font-semibold text-gray-800">{{ app.user.name }}</h3>
+                    <p class="text-gray-600">{{ app.user.email }}</p>
                 </div>
                 <div class="flex justify-center">
-                    <a href="{{ path('edit_profile', {'id': user.id}) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
+           {#         <a href="{{ path('edit_profile', {'id': app.user.id}) }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
                         Editar Perfil
-                    </a>
+                    </a> #}
                 </div>
             </div>
         </div>
     </div>
+
+        {% include 'components/button.html.twig' with { text: "Cerrar sesión", href: '/logout' } only %}
 </section>
 {% endblock %}

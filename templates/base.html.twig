@@ -15,6 +15,7 @@
 
     <script type="module" defer src="/build/app.js"></script>
     {% block javascripts %}{% endblock %}
+            {{ encore_entry_script_tags('app') }}
 </head>
 
 <body class="font-body flex flex-col h-screen">
