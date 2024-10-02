@@ -1,37 +1,47 @@
 {% extends 'base.html.twig'%}
 {% block body %}
 
-    <a href="/vistaCrearDiscusion" type="submit" class="bg-timber-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="position: relative; z-index: 10;">
-    Agregar discuciones
-    </a>
-
-    <section class="bg-white py-10 items-center">
-        <h2 class="text-center text-buttercup-500 font-bold text-3xl">Los más populares 🔥</h2>
-        <div class="flex space-x-4 overflow-x-auto mt-6 px-4 justify-center">
-            <div class="min-w-[200px] max-w-[200px]">
-                <img src="imgs/cultivo-urbano.jpg" class="rounded-lg" alt="Cultivo Urbano">
-                <div class="text-center mt-2">
-                    <h3 class="text-timber-green-800 text-lg font-semibold">Cultivo Urbano</h3>
-                    <p class="text-sm text-gray-600">4.5 ★</p>
-                </div>
-            </div>
-            <div class="min-w-[200px] max-w-[200px]">
-                <img src="imgs/plaza.jpg" class="rounded-lg" alt="plaza">
-                <div class="text-center mt-2">
-                    <h3 class="text-timber-green-800 text-lg font-semibold">Plaza</h3>
-                    <p class="text-sm text-gray-600">4.5 ★</p>
-                </div>
-            </div>
-            <div class="min-w-[200px] max-w-[200px]">
-                <img src="imgs/encuentros.jpg" class="rounded-lg" alt="encuentros">
-                <div class="text-center mt-2">
-                    <h3 class="text-timber-green-800 text-lg font-semibold">Encuentros</h3>
-                    <p class="text-sm text-gray-600">4.5 ★</p>
-                </div>
+<section class="bg-white py-10 items-center">
+    <h2 class="text-center text-buttercup-500 font-bold text-3xl">Los más populares 🔥</h2>
+    <div class="flex space-x-4 overflow-x-auto mt-6 px-4 justify-center">
+        <div class="min-w-[200px] max-w-[200px]">
+            <img src="imgs/cultivo-urbano.jpg" class="rounded-lg" alt="Cultivo Urbano">
+            <div class="text-center mt-2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Cultivo Urbano</h3>
+                <p class="text-sm text-gray-600">4.5 ★</p>
             </div>
         </div>
-    </section>
-    <section class="bg-white py-10">
+        <div class="min-w-[200px] max-w-[200px]">
+            <img src="imgs/plaza.jpg" class="rounded-lg" alt="plaza">
+            <div class="text-center mt-2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Plaza</h3>
+                <p class="text-sm text-gray-600">4.5 ★</p>
+            </div>
+        </div>
+        <div class="min-w-[200px] max-w-[200px]">
+            <img src="imgs/encuentros.jpg" class="rounded-lg" alt="encuentros">
+            <div class="text-center mt-2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Encuentros</h3>
+                <p class="text-sm text-gray-600">4.5 ★</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Buscador de Discusión -->
+<section class="bg-white py-10">
+    <div class="flex justify-center py-5">
+        <div class="flex items-center gap-4">
+            <!-- Campo de búsqueda -->
+            <input type="text" placeholder="Buscar discusión" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
+
+            <!-- Botón Buscar -->
+            <button class="bg-pistachio-500 hover:bg-pistachio-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+                Buscar
+            </button>
+        </div>
+    </div>
+
     <div class="flex justify-center">
         <div class="w-full max-w-4xl flex space-x-8">
             <div class="w-1/2">
@@ -58,40 +68,22 @@
                             <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
                         </div>
                     </li>
-                    <li class="flex items-start">
-                        <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="Sostenibilidad">
-                        <div>
-                            <h3 class="text-timber-green-700 text-lg font-semibold">Sostenibilidad y medio ambiente</h3>
-                            <p class="text-sm text-gray-600">Explora cómo podemos cuidar el planeta.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Tecnicas avanzadas">
-                        <div>
-                            <h3 class="text-timber-green-700 text-lg font-semibold">Técnicas avanzadas de cultivos</h3>
-                            <p class="text-sm text-gray-600">Conoce nuevas técnicas</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="personas">
-                        <div>
-                            <h3 class="text-timber-green-700 text-lg font-semibold">Problemas y soluciones</h3>
-                            <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
-                        </div>
-                    </li>
+                    <!-- Añadir más temas si es necesario -->
                 </ul>
             </div>
             <div class="w-1/2">
-            <div class="rounded-xl flex flex-col p-4  gap-4">
-                <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
-                    <img src="imgs/world-removebg-preview.png" class="w-70 h-80 mb-4" alt="Mascota">
-                    <p class="text-white text-lg text-center">Crea discusiones con otras personas y pregunta tus dudas</p>
-                    <button class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</button>
+                <div class="rounded-xl flex flex-col p-4 gap-4">
+                    <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
+                        <img src="imgs/world-removebg-preview.png" class="w-70 h-80 mb-4" alt="Mascota">
+                        <p class="text-white text-lg text-center">Crea discusiones con otras personas y pregunta tus dudas</p>
+                        <a href="/vistaCrearDiscusion" class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <div class="container mx-auto my-8">
     <!-- Sección de Eventos Especiales -->
     <div class="mb-8">
@@ -109,26 +101,18 @@
             </div>
         </div>
     </div>
-<div>
-    <h2 class="text-2xl font-semibold text-center text-buttercup-700 mb-6">Reuniones Frecuentes</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="flex flex-col items-center bg-gradient-to-b from-timber-green-900 to-lochinvar-500 rounded-lg shadow-lg p-4">
-            <img src="imgs/vivero.png" alt="El Vivero de Susana" class="rounded-lg mb-4">
-            <h3 class="font-semibold text-buttercup-500 mb-2 text-center">El Vivero de Susana</h3>
-            <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p class="text-white text-center">Abierto: Sábados 10 AM</p>
-        </div>
-        <div class="flex flex-col items-center bg-gradient-to-b from-timber-green-900 to-lochinvar-500 rounded-lg shadow-lg p-4">
-            <img src="imgs/vivero.png" alt="El Vivero de Susana" class="rounded-lg mb-4">
-            <h3 class="font-semibold text-buttercup-500 mb-2 text-center">El Vivero de Susana</h3>
-            <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p class="text-white text-center">Abierto: Sábados 10 AM</p>
-        </div>
-        <div class="flex flex-col items-center bg-gradient-to-b from-timber-green-900 to-lochinvar-500 rounded-lg shadow-lg p-4">
-            <img src="imgs/vivero.png" alt="El Vivero de Susana" class="rounded-lg mb-4">
-            <h3 class="font-semibold text-buttercup-500 mb-2 text-center">El Vivero de Susana</h3>
-            <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p class="text-white text-center">Abierto: Sábados 10 AM</p>
+
+    <!-- Sección de Reuniones Frecuentes -->
+    <div>
+        <h2 class="text-2xl font-semibold text-center text-buttercup-700 mb-6">Reuniones Frecuentes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col items-center bg-gradient-to-b from-timber-green-900 to-lochinvar-500 rounded-lg shadow-lg p-4">
+                <img src="imgs/vivero.png" alt="El Vivero de Susana" class="rounded-lg mb-4">
+                <h3 class="font-semibold text-buttercup-500 mb-2 text-center">El Vivero de Susana</h3>
+                <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="text-white text-center">Abierto: Sábados 10 AM</p>
+            </div>
+            <!-- Repite este bloque para otras reuniones -->
         </div>
     </div>
 </div>
