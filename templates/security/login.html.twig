@@ -1,45 +1,55 @@
 {%- extends 'base.html.twig' -%}
 
-{%- block title -%}Inicio de Sesion{%- endblock -%}
+{%- block title -%}Inicio de Sesión{%- endblock -%}
 
-{%~ block body ~%}
-<div class="errors">
-    {%- if error -%}
-    {%- endif -%}
-</div>
-<div class="flex flex-row gap-3 h-full">
-    <div class="flex flex-row m-auto p-6 bg-lochinvar-100 rounded-xl">
-        <form class="flex flex-col justify-center w-80 gap-3 items-center" method="post">
-            <h1 class="font-heading text-3xl text-center mb-4 text-lochinvar-700">Bienvenido a Tierra Viva</h1>
-            {% include 'components/input.html.twig' with {
-            placeholder: "Correo",
-            type: 'email',
-            value: last_username,
-            name: '_username',
-            id: 'username',
-            autocomplete: 'email',
-            required: true, autofocus: true
-            } only %}
-            {% include 'components/input.html.twig' with {
-            placeholder: 'Contraseña',
-            type: 'password',
-            name: '_password',
-            id: 'password',
-            required: true,
-            } only %}
-            <label class="flex flex-row mb-3 gap-1 items-center text-lochinvar-600 font-label">
-                <input type="checkbox" name="_remember_me">
-                <span>Recuerdame</span>
-            </label>
-            {% include 'components/button.html.twig' with { text: 'Entrar', isPill: true } only -%}
-            <div class="flex flex-row items place-content-between gap-3">
-                <a href="/restablecer-contra" class="font-label text-sm text-lochinvar-500">¿0lvidaste tu
-                    contraseña?</a>
-                <a href="/registro" class="font-label text-sm text-lochinvar-500">¿Aún no tienes cuenta?</a>
-            </div>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        </form>
+{% block body %}
+<div class="flex justify-center items-center min-h-screen bg-timber-green-100">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden w-96">
+
+        <div class="p-6">
+            <h1 class="text-2xl font-semibold text-center mb-4 text-timber-green-700">Bienvenido a Tierra Viva</h1>
+
+            {%- if error -%}
+            <div class="text-timber-green-500 text-sm mb-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {%- endif -%}
+
+            <form class="flex flex-col gap-4" method="post">
+                {% include 'components/input.html.twig' with {
+                    placeholder: "Correo",
+                    type: 'email',
+                    value: last_username,
+                    name: '_username',
+                    id: 'username',
+                    autocomplete: 'email',
+                    required: true,
+                    autofocus: true
+                } only %}
+
+                {% include 'components/input.html.twig' with {
+                    placeholder: 'Contraseña',
+                    type: 'password',
+                    name: '_password',
+                    id: 'password',
+                    required: true
+                } only %}
+
+                <label class="flex items-center text-lochinvar-600 text-sm">
+                    <input type="checkbox" name="_remember_me" class="mr-2">
+                    <span>Recuérdame</span>
+                </label>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="bg-gradient-to-r from-lochinvar-400 to-lochinvar-600 text-white px-6 py-2 rounded-full">Entrar</button>
+                </div>
+
+                <div class="flex justify-between text-sm text-lochinvar-500">
+                    <a href="/restablecer-contra">¿Olvidaste tu contraseña?</a>
+                    <a href="/registro">¿Aún no tienes cuenta?</a>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            </form>
+        </div>
     </div>
-    <img src="/imgs/flor-ok.png" />
 </div>
-{%- endblock -%}
+{% endblock %}

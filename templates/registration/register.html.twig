@@ -3,25 +3,40 @@
 {% block title %}Registro{% endblock %}
 
 {% block body %}
-<div class="flex flex-row gap-3 h-full">
-    <img src="/imgs/flor-caminando.png" />
-    <div class="flex flex-row m-auto p-6 bg-lochinvar-100 rounded-xl">
-        <div class="flex flex-col justify-center w-80">
-            <h1 class="font-heading text-3xl text-center mb-4 text-lochinvar-700">REGISTRO</h1>
+<div class="flex justify-center items-center min-h-screen bg-timber-green-100">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden w-96">
+        
+        <div class="p-6">
+            <h1 class="text-2xl font-semibold text-center mb-4 text-timber-green-700">Registro</h1>
             {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="" role="alert">{{ flash_error }}</div>
+                <div class="text-pancho-500 text-sm" role="alert">{{ flash_error }}</div>
             {% endfor %}
+            
             {{ form_start(registrationForm) }}
-            {{ form_errors(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-            label: 'Contraseña'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms, {attr: {class: 'text-pb-600'}}) }}
-            <div class="flex flex-row items place-content-between gap-3">
-                <a href="/login" class="font-label text-sm text-lochinvar-500">¿Ya tienes cuenta?</a>
+            <div class="mb-4">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
+                {{ form_errors(registrationForm.email) }}
             </div>
-            {% include 'components/button.html.twig' with { text: 'Registrarse', isPill: true } only %}
+
+            <div class="mb-4">
+                {{ form_label(registrationForm.plainPassword, 'Contraseña') }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+
+            <div class="mb-4">
+                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-2'}}) }}
+            </div>
+
+            <div class="flex justify-between items-center mb-4">
+                <a href="/login" class="text-sm text-lochinvar-500">¿Ya tienes cuenta?</a>
+            </div>
+
+            <div class="flex justify-center">
+                <button type="submit" class="bg-gradient-to-r from-lochinvar-400 to-lochinvar-600 text-white px-6 py-2 rounded-full">Crear Cuenta</button>
+            </div>
+
             {{ form_end(registrationForm) }}
         </div>
     </div>
