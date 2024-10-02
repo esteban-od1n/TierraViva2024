@@ -6,10 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class Index extends AbstractController {
+class vistaDocumentales extends AbstractController {
 
-    #[Route(path: '/', name: 'index')]
+    #[Route(path: '/vistaDocumentales', name: 'vistaDocumentales')]
     public function content(): Response {
-        return $this->render('pages/index.html.twig');
-    }    
+        return $this->render('pages/vistaDocumentales.html.twig');
+    }
 }
