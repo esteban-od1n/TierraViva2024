@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-class Post
+class News
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -41,17 +41,10 @@ class Post
     #[ORM\ManyToMany(targetEntity: User::class)]
     private Collection $likes;
 
-    /**
-     * @var Collection<int, Topic>
-     */
-    #[ORM\ManyToMany(targetEntity: Topic::class, inversedBy: 'posts')]
-    private Collection $topic;
-
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
-        $this->topic = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,30 +150,6 @@ class Post
     public function removeLike(User $like): static
     {
         $this->likes->removeElement($like);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Topic>
-     */
-    public function getTopic(): Collection
-    {
-        return $this->topic;
-    }
-
-    public function addTopic(Topic $topic): static
-    {
-        if (!$this->topic->contains($topic)) {
-            $this->topic->add($topic);
-        }
-
-        return $this;
-    }
-
-    public function removeTopic(Topic $topic): static
-    {
-        $this->topic->removeElement($topic);
 
         return $this;
     }
