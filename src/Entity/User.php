@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'author')]
     private Collection $posts;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -190,6 +193,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $post->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

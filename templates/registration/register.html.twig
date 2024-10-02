@@ -13,6 +13,13 @@
             {% endfor %}
             
             {{ form_start(registrationForm) }}
+
+             <div class="mb-4">
+                {{ form_label(registrationForm.name) }}
+                {{ form_widget(registrationForm.name, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
+                {{ form_errors(registrationForm.name) }}
+            </div>
+
             <div class="mb-4">
                 {{ form_label(registrationForm.email) }}
                 {{ form_widget(registrationForm.email, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
