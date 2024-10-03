@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'anonym/base.html.twig' %}
 
 {% block body %}
 <section class="bg-gray-100 py-10">
@@ -8,7 +8,7 @@
             <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full flex items-center">
                 <!-- Foto de perfil -->
                 <div class="flex-shrink-0">
-                    <img src="{{ user.profilePicture|default('imgs/default-profile.png') }}" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-buttercup-500 mb-4">
+                    <img src="{{ asset("/avatars/" ~ app.user.avatar) }}" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-buttercup-500 mb-4">
                 </div>
                 <!-- Información del usuario -->
                 <div class="ml-4">
