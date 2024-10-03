@@ -4,10 +4,12 @@
 {% endmacro -%}
 
 <header class="flex flex-row bg-timber-green-900 py-3 px-10 items-center">
-    <div class="flex flex-row items-center">
-        <img src="/icon.png" class="max-h-16" />
-        <img src="/logo.svg" class="max-h-8" />
-    </div>
+    <a href="/">
+        <div class="flex flex-row items-center">
+            <img src="/icon.png" class="max-h-16" />
+            <img src="/logo.svg" class="max-h-8" />
+        </div>
+    </a>
     <nav class="flex flex-row items-center gap-6 text-white flex-1 justify-center">
         {{ _self.nav_item('/', 'Inicio', current_path == 'index') }}
         {{ _self.nav_item('/recursos', 'Recursos', current_path == 'resources') }}

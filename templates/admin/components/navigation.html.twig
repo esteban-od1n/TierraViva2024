@@ -1,0 +1,18 @@
+{% macro nav_item(ref, text, is_active = false) %}
+{% set current_path = app.request.get('_route') -%}
+{% set is_active = current_path == ref %}
+<a class="font-body text-xl {{ is_active? 'text-pistachio-400' }}" href={{ path(ref) }}>{{ text }}</a>
+{% endmacro -%}
+
+<navigation class="flex flex-col gap-10 bg-pancho-700 py-3 px-10 items-center">
+    <a href="/admin">
+        <div class="flex flex-row items-center">
+            <img src="/icon.png" class="max-h-16" />
+        </div>
+    </a>
+    <nav class="flex flex-col gap-6 text-white flex-1">
+        {{ _self.nav_item('admin_users', 'Usuarios') }}
+        {{ _self.nav_item('admin_resources', 'Recursos') }}
+    </nav>
+    {% include 'components/avatar.html.twig' %}
+</navigation>

@@ -1,0 +1,3 @@
+<a href="{{ path('profile') }}">
+    <img class="rounded-full size-12" src="{{app.user.avatar? asset('avatars/' ~ app.user.avatar) : asset('imgs/avatar.png') }}" />
+</a>

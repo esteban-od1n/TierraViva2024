@@ -1,15 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'anonym/base.html.twig' %}
 
 {% block body %}
 <div class="flex flex-col items-center mt-8 mb-4"> <!-- Añadido mt-8 para el margen superior del contenedor -->
     <h1 class="font-heading text-3xl text-pistachio-500 text-center mb-4">Buscar Ubicación</h1>
-    <div class="flex mb-4">  
+    <div class="flex mb-4">
         <input type="text" id="location" placeholder="Ingresa una ubicación..." style="width: 600px;" class="border rounded-l-md px-4 py-2"> <!-- Ancho ajustado a 500px -->
         <button id="searchButton" class="bg-pistachio-600 text-white rounded-r-md px-4 py-2">Buscar</button>
     </div>
-</div>
 
-    
     <!-- Contenedor del mapa -->
     <div class="relative" style="width: 100%; height: 700px; padding: 60px;">
         <iframe height="100%" width="100%" class="rounded-xl"
@@ -44,13 +42,13 @@
     document.getElementById('searchButton').addEventListener('click', function() {
         const locationInput = document.getElementById('location').value;
         const mapIframe = document.getElementById('map');
-        
+
         // Aquí se debe hacer un reemplazo para codificar la ubicación en la URL del mapa
         const encodedLocation = encodeURIComponent(locationInput);
-        
+
         // Este enlace es solo un ejemplo. Debes reemplazarlo con el enlace adecuado que te lleve al mapa.
         const newUrl = `https://www.openstreetmap.org/export/embed.html?bbox=-104.39449310302736%2C19.049867681883935%2C-104.27381515502931%2C19.127085596640235&layer=mapnik&marker=19.0889,-104.3348`;
-        
+
         // Cambiar el src del iframe al nuevo enlace del mapa
         mapIframe.src = newUrl;
     });
