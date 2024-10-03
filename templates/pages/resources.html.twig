@@ -33,13 +33,13 @@
             POR CATEGORIAS</h1>
         <div class="flex flex-row justify-center gap-3">
             {% set icons = [
-            ['information-circle-1.svg.twig', 'Noticias', '/vistaNoticias'],
-            ['logo-youtube.svg.twig', 'Videos', '/vistaVideos'],
-            ['document-text.svg.twig', 'Documentales', '/vistaDocumentales'],
-            ['book.svg.twig', 'Manuales o libros', '/vistaLibrosManuales'],
+            ['information-circle-1.svg.twig', 'Noticias', 'resource', {type: 'news'}],
+            ['logo-youtube.svg.twig', 'Videos', 'resource'],
+            ['document-text.svg.twig', 'Documentales', 'resource'],
+            ['book.svg.twig', 'Manuales o libros', 'resource'],
             ] %}
             {% for i in icons %}
-            <a class="bg-kumera-500 text-white rounded-xl" href="{{ i[2] }}">
+            <a class="bg-kumera-500 text-white rounded-xl" href="{{ path(i[2], i[3] ?? {}) }}">
                 {{ _self.icon_btn(i[0], i[1]) }}
             </a>
             {% endfor %}

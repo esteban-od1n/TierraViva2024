@@ -1,10 +1,17 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Post;
+use App\Entity\Providers;
+use App\Entity\Topic;
+use App\Form\CommentFormType;
 use App\Form\PostFormType;
+use App\Form\ProviderFormType;
+use App\Form\TopicFormType;
+use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\ProvidersRepository;
 use App\Repository\ResourceRepository;
+use App\Repository\TopicRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +21,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 use \DateTime;
 
-class AdminForum extends AbstractController
+class AdminProviders extends AbstractController
 {
-    #[Route(path: "/admin/forum", name: "admin_forum")]
-    public function forum(
-        PostRepository $repo,
+    #[Route(path: "/admin/providers", name: "admin_providers")]
+    public function providers(
+        ProvidersRepository $repo,
         #[MapQueryParameter] ?int $page = 1,
         #[MapQueryParameter] ?string $filter = null
     ): Response {
@@ -32,86 +39,85 @@ class AdminForum extends AbstractController
             ->setFirstResult(($page - 1) * 21);
         if ($filter) {
             $query
-                ->where($query->expr()->like("p.title", ":filter"))
+                ->where($query->expr()->like("p.name", ":filter"))
                 ->setParameter("filter", "%$filter%");
         }
-        $forum = $query->getQuery()->getResult();
+        $res = $query->getQuery()->getResult();
 
-        return $this->render("admin/forum.html.twig", [
-            "posts" => $forum,
+        return $this->render("admin/providers.html.twig", [
+            "providers" => $res,
             "page" => $page,
         ]);
     }
 
-    #[Route(path: "/admin/forum/new", name: "admin_forum_new")]
-    public function addPost(
-        PostRepository $repo,
+    #[Route(path: "/admin/providers/new", name: "admin_providers_new")]
+    public function newProvider(
+        ProvidersRepository $repo,
         EntityManagerInterface $em,
         Request $request
     ): Response {
-        $post = new Post();
-        $form = $this->createForm(PostFormType::class, $post);
+        $entity = new Providers();
+        $form = $this->createForm(ProviderFormType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setDate(new DateTime());
-            $em->persist($post);
+            $em->persist($entity);
             $em->flush();
-            return $this->redirectToRoute("admin_forum");
+            return $this->redirectToRoute("admin_providers");
         }
 
-        return $this->render("admin/forum_new.html.twig", [
+        return $this->render("admin/provider_new.html.twig", [
             "form" => $form,
         ]);
     }
 
-    #[Route(path: "/admin/forum/{id}/edit", name: "admin_forum_edit")]
-    public function editPost(
+    #[Route(path: "/admin/providers/{id}/edit", name: "admin_provider_edit")]
+    public function editProvider(
         int $id,
-        PostRepository $repo,
+        ProvidersRepository $repo,
         EntityManagerInterface $em,
         Request $request
     ): Response {
-        $post = $repo->find($id);
-        if (!$post) {
+        $entity = $repo->find($id);
+        if (!$entity) {
             throw new NotFoundHttpException();
         }
-        $form = $this->createForm(PostFormType::class, $post);
+        $form = $this->createForm(ProviderFormType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($post);
+            $em->persist($entity);
             $em->flush();
-            return $this->redirectToRoute("admin_forum");
+            return $this->redirectToRoute("admin_providers");
         }
 
-        return $this->render("admin/forum_edit.html.twig", [
+        return $this->render("admin/provider_edit.html.twig", [
             "form" => $form,
         ]);
     }
 
-    #[Route(path: "/admin/forum/{id}/delete", name: "admin_forum_delete")]
+    #[Route(path: "/admin/providers/{id}/delete", name: "admin_provider_delete")]
     public function deletePost(
-        PostRepository $repo,
+        ProvidersRepository $repo,
         EntityManagerInterface $em,
         int $id,
         #[MapQueryParameter] ?string $action
     ): Response {
-        $post = $repo->find($id);
-        if (!$post) {
+        $entity = $repo->find($id);
+        if (!$entity) {
             throw new NotFoundHttpException();
         }
 
         if ($action === "delete") {
-            $em->remove($post);
+            $em->remove($entity);
             $em->flush();
-            return $this->redirectToRoute("admin_forum");
+            return $this->redirectToRoute("admin_providers");
         } elseif ($action === "cancelar") {
-            return $this->redirectToRoute("admin_forum");
+            return $this->redirectToRoute("admin_providers");
         }
 
-        return $this->render("admin/forum_delete.html.twig", [
-            "post" => $post,
+        return $this->render("admin/provider_delete.html.twig", [
+            "provider" => $entity,
         ]);
     }
 }

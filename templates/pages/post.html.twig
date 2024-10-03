@@ -1,0 +1,48 @@
+{% extends 'anonym/base.html.twig'%}
+{% block body %}
+<div class="m-8 border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-heading text-timber-green-800">Autor: {{ post.author.name }}</h2>
+        <div class="text-sm text-timber-green-600">
+            Temas:
+            {% for topic in post.topic %}
+                <span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="text-timber-green-700 text-sm mb-4">
+        {{ post.body }}
+    </div>
+
+    <div class="flex items-center gap-10 mt-4">
+        <div>
+            <a href="{{ path('forum_like', {id: post.id}) }}" class="flex items-center gap-1 px-4 py-2 bg-timber-green-500 text-white text-sm rounded-lg hover:bg-timber-green-600 focus:outline-none focus:ring-2 focus:ring-timber-green-500">
+                {{ liked? 'Ya no me gusta' : 'Me gusta' }}
+            </a>
+        </div>
+        <div class="text-sm text-timber-green-700">{{ post.likes.count }} Likes</div>
+    </div>
+
+    <div class="mt-6 border-t pt-4">
+        <h3 class="text-md font-heading text-timber-green-800 mb-3">Comentarios ({{ post.comments|length }})</h3>
+
+        {% if post.comments is not empty %}
+            <ul class="space-y-4">
+                {% for comment in post.comments %}
+                <li class="border border-timber-green-300 rounded-lg p-3 bg-timber-green-50">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-timber-green-900 font-bold">{{ comment.author.name }}</span>
+                        {# <span class="text-xs text-timber-green-600">{{ comment.createdAt|date("F j, Y, g:i a") }}</span> #}
+                    </div>
+                    <p class="text-timber-green-700 text-sm">{{ comment.body }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-sm text-timber-green-700">No comments yet. Be the first to comment!</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

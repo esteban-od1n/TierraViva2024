@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enum\ProviderCategories;
 use App\Repository\ProvidersRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProvidersRepository::class)]
@@ -20,8 +20,11 @@ class Providers
     #[ORM\Column]
     private ?bool $visible = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $location = [];
+    #[ORM\Column]
+    private ?string $location = null;
+
+    #[ORM\Column(type: "string", enumType: ProviderCategories::class)]
+    private ?ProviderCategories $category = null;
 
     public function getId(): ?int
     {
@@ -52,14 +55,26 @@ class Providers
         return $this;
     }
 
-    public function getLocation(): array
+    public function getLocation(): string
     {
         return $this->location;
     }
 
-    public function setLocation(array $location): static
+    public function setLocation(string $location): static
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getCategory(): ?ProviderCategories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(ProviderCategories $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

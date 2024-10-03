@@ -42,9 +42,13 @@
             <td class="px-6 py-4 font-body text-sm text-gray-900">{{ p.author.email }}</td>
             <td class="px-6 py-4 font-body text-sm text-gray-900">{{ p.comments.count }}</td>
             <td class="px-6 py-4 font-body text-sm text-gray-900">{{ p.likes.count }}</td>
-            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ '' }}</td>
             <td class="px-6 py-4 font-body text-sm text-gray-900">
-                <a target="_blank" href="{{ path('foro_post', {id: p.id}) }}">
+                {% for topic in p.topic %}
+                    <span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
+                {% endfor %}
+            </td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">
+                <a target="_blank" href="{{ path('forum_post', {id: p.id}) }}">
                 {% include 'components/button/default.html.twig' with { text: 'Ver' } %}
                 </a>
                 <a href="{{ path('admin_forum_edit', {id: p.id}) }}">
