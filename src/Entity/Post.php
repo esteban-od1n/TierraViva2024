@@ -20,7 +20,7 @@ class Post
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\ManyToOne(inversedBy: "posts")]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
@@ -33,7 +33,7 @@ class Post
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post')]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: "post")]
     private Collection $comments;
 
     /**
@@ -45,7 +45,7 @@ class Post
     /**
      * @var Collection<int, Topic>
      */
-    #[ORM\ManyToMany(targetEntity: Topic::class, inversedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Topic::class, inversedBy: "posts")]
     private Collection $topic;
 
     public function __construct()

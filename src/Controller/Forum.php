@@ -13,4 +13,10 @@ class Forum extends AbstractController
     {
         return $this->render("pages/foro.html.twig");
     }
+
+    #[Route(path: "/foro/post/{id}", name: "foro_post")]
+    public function post(int $id): Response
+    {
+        return $this->render("pages/foro.html.twig");
+    }
 }

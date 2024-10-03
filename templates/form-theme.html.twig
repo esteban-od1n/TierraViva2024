@@ -108,3 +108,40 @@ class: class(attr.class is defined? attr.class)
     }) %}
     <textarea {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, required: required }) }} {{ attrs(attr) }}>{{ value is defined ? value : '' }}</textarea>
     {%- endblock textarea_widget -%}
+
+    {%- block choice_widget_collapsed -%}
+    {% set attr = attr|merge({
+    class: class(attr.class is defined? attr.class)
+    .add('w-full px-4 py-2 border rounded-lg text-gray-700 bg-white focus:ring-2 focus:ring-timber-green-500 focus:outline-none'),
+    }) %}
+    <select {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, required: required }) }} {{ attrs(attr) }}>
+        {% if placeholder is not none %}
+        <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+        {% for group_label, choice in preferred_choices %}
+        {% if choice is iterable %}
+        <optgroup label="{{ group_label }}">
+            {% for nested_choice in choice %}
+            <option value="{{ nested_choice.value }}"{% if nested_choice.value == value %} selected="selected"{% endif %}>{{ nested_choice.label }}</option>
+            {% endfor %}
+        </optgroup>
+        {% else %}
+        <option value="{{ choice.value }}"{% if choice.value == value %} selected="selected"{% endif %}>{{ choice.label }}</option>
+        {% endif %}
+        {% endfor %}
+        <option disabled="disabled">{{ separator }}</option>
+        {% endif %}
+        {% for group_label, choice in choices %}
+        {% if choice is iterable %}
+        <optgroup label="{{ group_label }}">
+            {% for nested_choice in choice %}
+            <option value="{{ nested_choice.value }}"{% if nested_choice.value == value %} selected="selected"{% endif %}>{{ nested_choice.label }}</option>
+            {% endfor %}
+        </optgroup>
+        {% else %}
+        <option value="{{ choice.value }}"{% if choice.value == value %} selected="selected"{% endif %}>{{ choice.label }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    {%- endblock choice_widget_collapsed -%}

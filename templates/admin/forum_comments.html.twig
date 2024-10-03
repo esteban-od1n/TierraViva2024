@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% macro nav_item(ref, text, is_active = false) %}
+{% set current_path = app.request.get('_route') -%}
+{% set is_active = current_path == ref %}
+<a class="text-timber-green-600 py-2 px-6 block hover:bg-timber-green-50 hover:text-timber-green-900 border-transparent focus:outline-none focus:border-timber-green-500 {{ is_active? 'border-b-2' }}" href={{ path(ref) }}>{{ text }}</a>
+{% endmacro -%}
+
+{% block body %}
+<div class="flex flex-col py-5 gap-3 m-8">
+    <h1 class="font-heading text-6xl">Foro</h1>
+    <div class="flex border-b border-timber-green-500">
+        {{ _self.nav_item('admin_forum', 'Publicaciones') }}
+        {{ _self.nav_item('admin_forum_comments', 'Comentarios') }}
+    </div>
+    <a href="{{ path('admin_forum_comments_new') }}">{% include 'components/button/default.html.twig' with { text: 'Comentar' } %}</a>
+    <form class="flex flex-row items-center gap-2">
+    <div class="mb-4">
+    </div>
+    {% include 'components/button/default.html.twig' with { text: 'Buscar' } %}
+    </form>
+    <table class="bg-white rounded-lg shadow-lg overflow-hidden table-auto">
+        <thead class="bg-pistachio-100 border-b border-lochinvar-100">
+            <tr>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Post</th>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Autor</th>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if comments is empty %}
+            <tr><td colspan="4" class="text-center text-timber-green-200 font-label text-4xl p-6">Sin elementos...</td></tr>
+        {% endif %}
+        {% for c in comments %}
+        <tr class="border-b border-lochinvar-100 hover:bg-gray-50">
+            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ c.post.title }}</td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ c.author.email }}</td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">
+                <a target="_blank" href="{{ path('foro_post', {id: c.id}) }}">
+                {% include 'components/button/default.html.twig' with { text: 'Ver' } %}
+                </a>
+                <a href="{{ path('admin_forum_comments_edit', {id: c.id}) }}">
+                {% include 'components/button/default.html.twig' with { text: 'Editar' } %}
+                </a>
+                <a href="{{ path('admin_forum_comments_delete', {id: c.id}) }}">
+                {% include 'components/button/danger.html.twig' with { text: 'Eliminar' } %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include 'components/pager.html.twig' with {
+        previous: page > 1? { path: path('admin_forum_comments', { page: page - 1 }) },
+        current: page,
+        pages: [
+            { path: path('admin_forum_comments', {page: page}), name: 'comment_' ~ page, label: page }
+        ],
+        next: comments|length > 20? { path: path('admin_forum_comments', { page: page + 1 }) }
+    } %}
+</div>
+{% endblock %}

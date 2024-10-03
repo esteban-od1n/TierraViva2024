@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use \DateTime;
@@ -100,7 +99,7 @@ class AdminResources extends AbstractController
     ): Response {
         $resource = $repo->find($id);
         if (!$resource) {
-            throw NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
         $form = $this->createForm(ResourceFormType::class, $resource);
         $form->handleRequest($request);
@@ -135,7 +134,7 @@ class AdminResources extends AbstractController
     ): Response {
         $resource = $repo->find($id);
         if (!$resource) {
-            throw NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         if ($action === "delete") {

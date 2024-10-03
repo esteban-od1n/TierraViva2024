@@ -96,7 +96,7 @@ class AdminUsers extends AbstractController
     ): Response {
         $user = $userRepo->find($id);
         if (!$user) {
-            throw NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
         $form = $this->createForm(UserFormType::class, $user);
         $form->handleRequest($request);
@@ -136,7 +136,7 @@ class AdminUsers extends AbstractController
     ): Response {
         $user = $userRepo->find($id);
         if (!$user) {
-            throw NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         if ($action === "delete") {
