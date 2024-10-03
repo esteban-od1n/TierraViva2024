@@ -23,8 +23,8 @@ class Resource
     #[ORM\Column(length: 255)]
     private ?string $uri = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $type = null;
+    #[ORM\Column]
+    private ?string $type = null;
 
     #[ORM\Column]
     private ?bool $visible = null;
@@ -73,12 +73,12 @@ class Resource
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(int $type): static
+    public function setType(string $type): static
     {
         $this->type = $type;
 

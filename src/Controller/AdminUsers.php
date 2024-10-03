@@ -149,10 +149,4 @@ class AdminUsers extends AbstractController
             "user" => $user,
         ]);
     }
-
-    #[Route(path: "/admin/resources", name: "admin_resources")]
-    public function resources(): Response
-    {
-        return $this->render("admin/resources.html.twig");
-    }
 }

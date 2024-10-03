@@ -100,3 +100,11 @@ class: class(attr.class is defined? attr.class)
     </label>
     {%- endif -%}
     {%- endblock form_label -%}
+
+    {%- block textarea_widget -%}
+    {% set attr = attr|merge({
+    class: class(attr.class is defined? attr.class)
+    .add('w-full h-32 px-4 py-2 border rounded-lg text-gray-700 placeholder-gray-500 bg-white focus:ring-2 focus:ring-timber-green-500 focus:outline-none resize-none'),
+    }) %}
+    <textarea {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, required: required }) }} {{ attrs(attr) }}>{{ value is defined ? value : '' }}</textarea>
+    {%- endblock textarea_widget -%}
