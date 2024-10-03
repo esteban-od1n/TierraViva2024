@@ -11,7 +11,7 @@ export default {
             'black': '#000000',
             'timber-green': {
                 '50': '#f3faf7',
-                '100': '#d7f0e5',
+                '100': '#d7f0e5',   
                 '200': '#b0dfcd',
                 '300': '#80c8af',
                 '400': '#56ab90',
