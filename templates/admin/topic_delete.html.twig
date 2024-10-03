@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+<div class="flex flex-col py-5 gap-3 m-8">
+    <h1 class="font-heading text-6xl">Eliminar tema "{{topic.name}}"</h1>
+    <form>
+        <button class="bg-buttercup-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="action" value="delete">Eliminar</button>
+        <button class="bg-timber-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="cancel" name="action" value="cancelar">Cancelar</button>
+    </form>
+</div>
+{% endblock %}

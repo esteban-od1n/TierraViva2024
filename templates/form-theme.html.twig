@@ -11,7 +11,7 @@
 {%- endif -%}
 {% set attr = attr|merge({
 class: class(attr.class is defined? attr.class)
-.add('flex flex-col gap-2 items-center')
+.add('flex flex-col gap-4 items-start')
 }) %}
 
 <form {{ attrs({ name: name, method: form_method|lower, action: action, enctype: multipart? "multipart/form-data" }) }}
@@ -23,9 +23,14 @@ class: class(attr.class is defined? attr.class)
 
     {%- block form_errors -%}
     {%- if errors|length > 0 -%}
-    <ul class="font-label m-0">
+    <ul class="text-red-600 font-body">
         {%- for error in errors -%}
         <li class="flex flex-row gap-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7a1 1 0 012 0v2a1 1 0 11-2 0v-2zm1-5a1 1 0 00-.993.883L9 7v2a1 1 0 001.993.117L11 9V7a1 1 0 00-1-1z"
+                    clip-rule="evenodd" />
+            </svg>
             <span>{{ error.message }}</span>
         </li>
         {%- endfor -%}
@@ -36,8 +41,8 @@ class: class(attr.class is defined? attr.class)
     {%- block form_row -%}
     {% set attr = attr|merge({
     class: class(attr.class is defined? attr.class)
-    .add('flex flex-col gap-3 items-center rounded')
-    .add(errors is not empty? 'py-3 px-3')
+    .add('flex flex-col gap-3 items-start w-full')
+    .add(errors is not empty? 'border border-red-600 rounded-lg py-3 px-4'),
     }) %}
     <div {{ attrs(attr) }}>
         {{- form_errors(form) -}}
@@ -50,26 +55,21 @@ class: class(attr.class is defined? attr.class)
     {%- block checkbox_row -%}
     {% set attr = attr|merge({
     class: class(attr.class is defined? attr.class)
-    .add('flex flex-col gap-3 items-center rounded-2')
-    .add(errors is not empty? 'field-bad py-3 px-3'),
+    .add('flex flex-row gap-3 items-center'),
     }) %}
     <div {{ attrs(attr) }}>
-        {{- form_errors(form) -}}
         {{- form_widget(form) -}}
+        <span class="font-body">{{- field_label(form) -}}</span>
     </div>
     {%- endblock -%}
 
     {%- block checkbox_widget -%}
     {% set attr = attr|merge({
     class: class(attr.class is defined? attr.class)
-    .add('flex flex-col gap-3 items-center rounded')
-    .add(errors is not empty? 'py-3 px-3'),
+    .add('h-4 w-4 text-timber-green-600 rounded border-gray-300'),
     }) %}
-    <label class="flex flex-row gap-1 items-c">
-        <input type="checkbox" {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, value: value
-            is defined? value, checked: checked is defined? checked : false, }) }} {{ attrs(attr) }} />
-        <span class="font-label">{{- field_label(form) -}}</span>
-    </label>
+    <input type="checkbox" {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, value: value
+        is defined? value, checked: checked is defined? checked : false }) }} {{ attrs(attr) }} />
     {%- endblock -%}
 
     {%- block form_widget -%}
@@ -82,32 +82,66 @@ class: class(attr.class is defined? attr.class)
 
     {%- block form_widget_simple -%}
     {%- set type = type|default('text') -%}
-    {%- if type == 'range' or type == 'color' -%}
-    {# Attribute "required" is not supported #}
-    {%- set required = false -%}
-    {%- endif -%}
     {% set attr = attr|merge({
     class: class(attr.class is defined? attr.class)
-    .add('flex flex-col gap-3 items-center rounded-full py-2 px-4 text-kumera-300 placeholder:text-kumera-300/50
-    bg-kumera-900/75 font-label')
-    .add(errors is not empty? 'py-3 px-3'),
+    .add('w-full px-4 py-2 border rounded-lg text-gray-700 placeholder-gray-500 bg-white focus:ring-2 focus:ring-timber-green-500 focus:outline-none'),
     }) %}
     <input {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, value: value is defined? value,
         checked: checked is defined? checked : false, type: type, required: required, }) }} {{ attrs(attr) }} />
     {%- endblock form_widget_simple -%}
-
 
     {%- block form_label -%}
     {% if label is not same as(false) -%}
     {% if not compound -%}
     {% set label_attr = label_attr|merge({'for': id}) %}
     {%- endif -%}
-    {% if required -%}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('font-label') ~ ' required')|trim}) %}
-    {%- endif -%}
-    <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith
-        %}{% endif %}>
+    <label {{ attrs(label_attr|merge({'class': 'font-label text-timber-green-700 mb-2'})) }}>
         {{- block('form_label_content') -}}
-    </{{ element|default('label') }}>
+    </label>
     {%- endif -%}
     {%- endblock form_label -%}
+
+    {%- block textarea_widget -%}
+    {% set attr = attr|merge({
+    class: class(attr.class is defined? attr.class)
+    .add('w-full h-32 px-4 py-2 border rounded-lg text-gray-700 placeholder-gray-500 bg-white focus:ring-2 focus:ring-timber-green-500 focus:outline-none resize-none'),
+    }) %}
+    <textarea {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, required: required }) }} {{ attrs(attr) }}>{{ value is defined ? value : '' }}</textarea>
+    {%- endblock textarea_widget -%}
+
+    {%- block choice_widget_collapsed -%}
+    {% set attr = attr|merge({
+    class: class(attr.class is defined? attr.class)
+    .add('w-full px-4 py-2 border rounded-lg text-gray-700 bg-white focus:ring-2 focus:ring-timber-green-500 focus:outline-none'),
+    }) %}
+    <select {{ attrs({ id: id, name: full_name, disabled: disabled is defined? disabled, required: required }) }} {{ attrs(attr) }}>
+        {% if placeholder is not none %}
+        <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+        {% for group_label, choice in preferred_choices %}
+        {% if choice is iterable %}
+        <optgroup label="{{ group_label }}">
+            {% for nested_choice in choice %}
+            <option value="{{ nested_choice.value }}"{% if nested_choice.value == value %} selected="selected"{% endif %}>{{ nested_choice.label }}</option>
+            {% endfor %}
+        </optgroup>
+        {% else %}
+        <option value="{{ choice.value }}"{% if choice.value == value %} selected="selected"{% endif %}>{{ choice.label }}</option>
+        {% endif %}
+        {% endfor %}
+        <option disabled="disabled">{{ separator }}</option>
+        {% endif %}
+        {% for group_label, choice in choices %}
+        {% if choice is iterable %}
+        <optgroup label="{{ group_label }}">
+            {% for nested_choice in choice %}
+            <option value="{{ nested_choice.value }}"{% if nested_choice.value == value %} selected="selected"{% endif %}>{{ nested_choice.label }}</option>
+            {% endfor %}
+        </optgroup>
+        {% else %}
+        <option value="{{ choice.value }}"{% if choice.value == value %} selected="selected"{% endif %}>{{ choice.label }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    {%- endblock choice_widget_collapsed -%}

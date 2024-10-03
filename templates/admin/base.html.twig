@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Tierraviva{% endblock %}</title>
+    <link rel="stylesheet" href="/build/app.css" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Langar&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    {% block stylesheets -%}{%- endblock %}
+
+    <script type="module" defer src="/build/app.js"></script>
+    {% block javascripts %}{% endblock %}
+            {{ encore_entry_script_tags('app') }}
+</head>
+
+<body class="font-body flex flex-row h-screen">
+    {% include 'admin/components/navigation.html.twig' %}
+    <main class="flex-1 flex flex-col">{% block body %}{% endblock %}</main>
+    {# % include 'components/footer.html.twig' % #}
+</body>
+
+</html>

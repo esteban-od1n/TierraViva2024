@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+<div class="flex flex-col py-5 gap-3 m-8">
+    <h1 class="font-heading text-6xl">Recursos</h1>
+    <a href="{{ path('admin_resources_new') }}">{% include 'components/button/default.html.twig' with { text: 'Agregar recurso' } %}</a>
+    <form class="flex flex-row items-center gap-2">
+    <div class="mb-4">
+      <label for="email-filter" class="block mb-2 text-sm font-medium text-timber-green-700">Filtrar</label>
+      <input type="text" id="filter-text" name="filter" placeholder="Filtro..." class="w-full px-4 py-2 border border-timber-green-500 rounded-lg focus:ring-timber-green-500 focus:border-timber-green-600" />
+    </div>
+    {% include 'components/button/default.html.twig' with { text: 'Buscar' } %}
+    </form>
+    <table class="bg-white rounded-lg shadow-lg overflow-hidden table-auto">
+        <thead class="bg-pistachio-100 border-b border-lochinvar-100">
+            <tr>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Nombre</th>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Tipo</th>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Estado</th>
+                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if resources is empty %}
+            <tr><td colspan="4" class="text-center text-timber-green-200 font-label text-4xl p-6">Sin elementos...</td></tr>
+        {% endif %}
+        {% for r in resources %}
+        <tr class="border-b border-lochinvar-100 hover:bg-gray-50">
+            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ r.name }}</td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ r.type }}</td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ r.visible? 'Visible' : 'Invisible' }}</td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900">
+                <a target="_blank" href="{{ asset('resources/' ~ r.uri) }}">
+                {% include 'components/button/default.html.twig' with { text: 'Ver' } %}
+                </a>
+                <a href="{{ path('admin_resources_edit', {id: r.id}) }}">
+                {% include 'components/button/default.html.twig' with { text: 'Editar' } %}
+                </a>
+                <a href="{{ path('admin_resources_delete', {id: r.id}) }}">
+                {% include 'components/button/danger.html.twig' with { text: 'Eliminar' } %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include 'components/pager.html.twig' with {
+        previous: page > 1? { path: path('admin_resources', { page: page - 1 }) },
+        current: page,
+        pages: [
+            { path: path('admin_resources', {page: page}), name: 'resources_' ~ page, label: page }
+        ],
+        next: resources|length > 20? { path: path('admin_resources', { page: page + 1 }) }
+    } %}
+</div>
+{% endblock %}
