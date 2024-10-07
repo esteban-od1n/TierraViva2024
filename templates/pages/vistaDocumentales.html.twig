@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="bg-white py-10 px-4">
+        <div class="flex justify-between mb-4">
+            <h2 class="text-buttercup-500 font-bold text-3xl">Documentales Disponibles 🎥</h2>
+            <div class="flex items-center">
+                <label for="filter" class="mr-2 text-gray-700">Filtrar por:</label>
+                <select id="filter" class="border rounded px-2 py-1">
+                    <option value="relevante">Más Relevante</option>
+                    <option value="nuevos">Más Nuevos</option>
+                    <option value="viejos">Más Viejos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <a href="https://example.com/documental1" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental1.jpg" class="rounded-lg" alt="Documental 1">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 1</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 1.</p>
+            </a>
+            <a href="https://example.com/documental2" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental2.jpg" class="rounded-lg" alt="Documental 2">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 2</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 2.</p>
+            </a>
+            <a href="https://example.com/documental3" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental3.jpg" class="rounded-lg" alt="Documental 3">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 3</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 3.</p>
+            </a>
+            <a href="https://example.com/documental4" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental4.jpg" class="rounded-lg" alt="Documental 4">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 4</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 4.</p>
+            </a>
+            <a href="https://example.com/documental5" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental5.jpg" class="rounded-lg" alt="Documental 5">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 5</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 5.</p>
+            </a>
+            <a href="https://example.com/documental6" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental6.jpg" class="rounded-lg" alt="Documental 6">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 6</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 6.</p>
+            </a>
+            <a href="https://example.com/documental7" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental7.jpg" class="rounded-lg" alt="Documental 7">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 7</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 7.</p>
+            </a>
+            <a href="https://example.com/documental8" target="_blank" class="bg-white shadow-lg rounded-lg p-4 border-2 border-gray-300 flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <img src="imgs/documental8.jpg" class="rounded-lg" alt="Documental 8">
+                <h3 class="text-timber-green-800 text-lg font-semibold">Título del Documental 8</h3>
+                <p class="text-sm text-gray-600">Descripción breve del documental 8.</p>
+            </a>
+        </div>
+    </section>
+{% endblock %}
