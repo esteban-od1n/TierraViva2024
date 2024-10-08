@@ -1,6 +1,4 @@
-{% extends 'base.html.twig' %}
-{% import "utils.twig" as utils %}
-{% form_theme requestForm 'form/form_theme.html.twig' %}
+{% extends 'anonym/base.html.twig' %}
 
 {% block stylesheets %}
 <style>
@@ -30,10 +28,10 @@
             <div class="reset--title flex-v text-pb-600 ai-c">
                 <div class="back--container flex-v jc-c">
                     <button type="button" class="back--button button-reset cur-p text-pb-600">
-                        {{ utils.icon('arrow-left.svg.twig') }}
+                        {# { utils.icon('arrow-left.svg.twig') } #}
                     </button>
                 </div>
-                {{ utils.icon('lock.svg.twig', 64) }}
+                {# { utils.icon('lock.svg.twig', 64) } #}
                 <h1 class="font-he-b">¿Olvidaste tu cotraseña?</h1>
             </div>
             <small class="font-de-n text-pb-200 text-c mb-5">
