@@ -2,52 +2,68 @@
 
 {% block body %}
 <div class="flex flex-col py-5 gap-3 m-8">
-    <h1 class="font-heading text-6xl">Usuarios</h1>
-    <a href="{{ path('admin_users_new') }}">{% include 'components/button/default.html.twig' with { text: 'Crear nuevo usuario' } %}</a>
-    <form class="flex flex-row items-center gap-2">
-    <div class="mb-4">
-      <label for="email-filter" class="block mb-2 text-sm font-medium text-timber-green-700">Filtrar</label>
-      <input type="text" id="filter-text" name="filter" placeholder="Filtro..." class="w-full px-4 py-2 border border-timber-green-500 rounded-lg focus:ring-timber-green-500 focus:border-timber-green-600" />
+    <h1 class="font-heading text-6xl">Control de Usuarios</h1>
+    
+    <div class="flex flex-row justify-between items-center mb-5">
+        <a href="{{ path('admin_users_new') }}" class="text-white bg-lochinvar-600 hover:bg-lochinvar-700 font-bold py-2 px-4 rounded">
+            Crear nuevo usuario
+        </a>
+        <form class="flex items-center gap-2">
+            <input type="text" id="filter-text" name="filter" placeholder="Buscar..." 
+                   class="px-4 py-2 border border-timber-green-500 rounded-lg focus:ring-timber-green-500 focus:border-timber-green-600" />
+            <button type="submit" class="text-white bg-timber-green-600 hover:bg-timber-green-700 py-2 px-4 rounded">
+                Buscar
+            </button>
+        </form>
     </div>
-    {% include 'components/button/default.html.twig' with { text: 'Buscar' } %}
-    </form>
-    <table class="bg-white rounded-lg shadow-lg overflow-hidden table-auto">
+
+    <table class="min-w-full bg-white border rounded-lg overflow-hidden shadow-lg table-auto">
         <thead class="bg-pistachio-100 border-b border-lochinvar-100">
             <tr>
-                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Nombre</th>
-                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Correo</th>
-                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Estado</th>
-                <th class="px-6 py-4 text-left text-sm font-label text-pancho-700">Acciones</th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-timber-green-900">Nombre</th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-timber-green-900">Correo</th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-timber-green-900">Estado</th>
+                <th class="px-6 py-4 text-left text-sm font-bold text-timber-green-900">Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% if users is empty %}
-            <tr><td colspan="4" class="text-center text-timber-green-200 font-label text-4xl p-6">Sin elementos...</td></tr>
+            <tr><td colspan="5" class="text-center text-timber-green-500 font-body text-4xl p-6">Sin elementos...</td></tr>
         {% endif %}
         {% for u in users %}
-        <tr class="border-b border-lochinvar-100 hover:bg-gray-50">
-            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ u.name }}</td>
-            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ u.email }}</td>
-            <td class="px-6 py-4 font-body text-sm text-gray-900">{{ u.enabled ? 'Activo' : 'Inactivo' }}</td>
-            <td class="px-6 py-4 font-body text-sm text-gray-900">
-                <a href="{{ path('admin_users_edit', {id: u.id}) }}">
-                {% include 'components/button/default.html.twig' with { text: 'Editar' } %}
+        <tr class="border-b border-lochinvar-100 hover:bg-balck">
+            <td class="px-6 py-4 font-body text-sm text-black">{{ u.name }}</td>
+            <td class="px-6 py-4 font-body text-sm text-black">{{ u.email }}</td>
+            <td class="px-6 py-4 font-body text-sm text-black">
+                {% if u.enabled %}
+                    <span class="text-pistachio-600 font-bold">Activo</span>
+                {% else %}
+                    <span class="text-kumera-600 font-bold">Inactivo</span>
+                {% endif %}
+            </td>
+            <td class="px-6 py-4 font-body text-sm text-gray-900 flex gap-2">
+                <a href="{{ path('admin_users_edit', {id: u.id}) }}" class="text-blue-500 hover:underline">
+                    {% include 'components/button/default.html.twig' with { text: 'Editar' } %}
                 </a>
-                <a href="{{ path('admin_users_delete', {id: u.id}) }}">
-                {% include 'components/button/danger.html.twig' with { text: 'Eliminar' } %}
+                <a href="{{ path('admin_users_delete', {id: u.id}) }}" class="text-red-500 hover:underline">
+                    {% include 'components/button/danger.html.twig' with { text: 'Eliminar' } %}
                 </a>
             </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% include 'components/pager.html.twig' with {
-        previous: page > 1? { path: path('admin_users', { page: page - 1 }) },
-        current: page,
-        pages: [
-            { path: path('admin_users', {page: page}), name: 'users_' ~ page, label: page }
-        ],
-        next: users|length > 20? { path: path('admin_users', { page: page + 1 }) }
-    } %}
+
+    <div class="flex justify-between items-center mt-4">
+        <span class="text-sm text-gray-600">Showing 1 to {{ users|length }} entries</span>
+        {% include 'components/pager.html.twig' with {
+            previous: page > 1? { path: path('admin_users', { page: page - 1 }) },
+            current: page,
+            pages: [
+                { path: path('admin_users', {page: page}), name: 'users_' ~ page, label: page }
+            ],
+            next: users|length > 20? { path: path('admin_users', { page: page + 1 }) }
+        } %}
+    </div>
 </div>
 {% endblock %}
