@@ -27,6 +27,7 @@
 
 <!-- Sección de Buscador de Discusión -->
 <section class="bg-white py-10">
+    <!-- Barra de búsqueda -->
     <div class="flex justify-center py-5">
         <div class="flex items-center gap-4">
             <!-- Campo de búsqueda -->
@@ -39,9 +40,11 @@
         </div>
     </div>
 
+    <!-- Sección de Mejores Temas y Publicaciones -->
     <div class="flex justify-center">
         <div class="w-full max-w-4xl flex space-x-8">
-            <div class="w-1/2">
+            <!-- Mejores Temas con fondo -->
+            <div class="w-1/2 bg-timber-green-100 p-4 rounded-lg shadow-md">
                 <h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
                 <ul class="mt-4 space-y-4">
                     {% for t in topics %}
@@ -55,10 +58,40 @@
                     {% endfor %}
                 </ul>
             </div>
-    <div class="flex justify-center">
-        <div class="w-full max-w-4xl flex space-x-8">
+
+            <!-- Publicaciones -->
             <div class="w-1/2">
-                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Discusiones mas comentadas</h1>
+                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Publicaciones</h1>
+                <div class="space-y-4">
+                    {% for p in posts %}
+                    <a href="{{ path('forum_post', {id: p.id}) }}">
+                        <div class="border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-lg font-heading text-timber-green-800">Author: {{ p.author.name }}</h2>
+                                <div class="text-sm text-timber-green-600">
+                                    Topics:
+                                    {% for topic in p.topic %}
+                                        <span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="text-timber-green-700 text-sm">
+                                {{ p.body | slice(0, 200) }}...
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Discusiones Más Comentadas y la Imagen -->
+    <div class="flex justify-center mt-8">
+        <div class="w-full max-w-4xl flex space-x-8">
+            <!-- Discusiones Más Comentadas -->
+            <div class="w-1/2">
+                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Discusiones más comentadas</h1>
                 <ul class="mt-4 space-y-4">
                     <li class="flex items-start">
                         <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="Sostenibilidad">
@@ -68,22 +101,23 @@
                         </div>
                     </li>
                     <li class="flex items-start">
-                        <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Tecnicas avanzadas">
+                        <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Técnicas avanzadas">
                         <div>
                             <h3 class="text-timber-green-700 text-lg font-semibold">Técnicas avanzadas de cultivos</h3>
                             <p class="text-sm text-gray-600">Conoce nuevas técnicas</p>
                         </div>
                     </li>
                     <li class="flex items-start">
-                        <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="personas">
+                        <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="Personas">
                         <div>
                             <h3 class="text-timber-green-700 text-lg font-semibold">Problemas y soluciones</h3>
                             <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
                         </div>
                     </li>
-                    <!-- Añadir más temas si es necesario -->
                 </ul>
             </div>
+
+            <!-- Imagen -->
             <div class="w-1/2">
                 <div class="rounded-xl flex flex-col p-4 gap-4">
                     <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
@@ -99,30 +133,9 @@
             </div>
         </div>
     </div>
-
-    <div class="container flex flex-col mx-auto my-8 gap-4">
-        {% for p in posts %}
-        <a href="{{ path('forum_post', {id: p.id}) }}">
-        <div class="border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-heading text-timber-green-800">Author: {{ p.author.name }}</h2>
-                <div class="text-sm text-timber-green-600">
-                    Topics:
-                    {% for topic in p.topic %}
-                        <span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="text-timber-green-700 text-sm">
-                {{ p.body | slice(0, 200) }}...
-            </div>
-        </div>
-        </a>
-        {% endfor %}
-    </div>
 </section>
 
-{#
+
 <div class="container mx-auto my-8">
     <!-- Sección de Eventos Especiales -->
     <div class="mb-8">
@@ -151,9 +164,8 @@
                 <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <p class="text-white text-center">Abierto: Sábados 10 AM</p>
             </div>
-            <!-- Repite este bloque para otras reuniones -->
         </div>
     </div>
 </div>
-#}
+
 {% endblock %}

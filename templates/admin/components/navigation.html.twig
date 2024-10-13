@@ -1,21 +1,26 @@
-{% macro nav_item(ref, text, is_active = false) %}
-{% set current_path = app.request.get('_route') -%}
-{% set is_active = current_path == ref %}
-<a class="font-body text-xl {{ is_active? 'text-pistachio-400' }}" href={{ path(ref) }}>{{ text }}</a>
-{% endmacro -%}
+{# admin/components/navigation.html.twig #}
 
-<navigation class="flex flex-col gap-10 bg-pancho-700 py-3 px-10 items-center">
-    <a href="/admin">
-        <div class="flex flex-row items-center">
+{% macro nav_item(ref, text, is_active = false) %}
+    {% set current_path = app.request.get('_route') %}
+    {% set is_active = current_path == ref %}
+    <a class="block p-4 rounded-lg {{ is_active ? 'bg-lochinvar-600 text-white font-bold' : 'text-buttercuo-700 hover:bg-pistachio-200 hover:text-black' }}" href="{{ path(ref) }}">{{ text }}</a>
+{% endmacro %}
+
+<navigation class="flex flex-col h-full w-64 bg-timber-green-900 p-5 shadow-lg">
+
+        <div class="flex items-center mb-5">
             <img src="/icon.png" class="max-h-16" />
+            <span class="ml-3 text-white text-2xl font-bold">Admin</span>
         </div>
-    </a>
-    <nav class="flex flex-col gap-6 text-white flex-1">
+    
+    <nav class="flex flex-col gap-2 text-white">
         {{ _self.nav_item('admin_users', 'Usuarios') }}
         {{ _self.nav_item('admin_resources', 'Recursos') }}
         {{ _self.nav_item('admin_forum', 'Foro') }}
         {{ _self.nav_item('admin_topics', 'Tema') }}
         {{ _self.nav_item('admin_providers', 'Proveedores') }}
     </nav>
-    {% include 'components/avatar.html.twig' %}
+    <div class="flex justify-center mt-10">
+        {% include 'components/avatar.html.twig' %}
+    </div>
 </navigation>
