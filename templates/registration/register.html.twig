@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'anonym/base.html.twig' %}
 
 {% block title %}Registro{% endblock %}
 
@@ -15,13 +15,13 @@
             {{ form_start(registrationForm) }}
 
              <div class="mb-4">
-                {{ form_label(registrationForm.name) }}
+                {{ form_label(registrationForm.name, 'Nombre o Apodo') }}
                 {{ form_widget(registrationForm.name, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
                 {{ form_errors(registrationForm.name) }}
             </div>
 
             <div class="mb-4">
-                {{ form_label(registrationForm.email) }}
+                {{ form_label(registrationForm.email, 'Correo electronico') }}
                 {{ form_widget(registrationForm.email, {'attr': {'class': 'w-full p-2 border-b-2 border-pistachio-500 focus:outline-none'}}) }}
                 {{ form_errors(registrationForm.email) }}
             </div>
@@ -32,8 +32,10 @@
                 {{ form_errors(registrationForm.plainPassword) }}
             </div>
 
-            <div class="mb-4">
+            <div class="mb-6 flex items-center">
                 {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'mr-2'}}) }}
+                <span style="margin-right: 4px;" class="text-sm text-lochinvar-500">Acepta los</span> <!-- Espacio en píxeles -->
+                <a href="{{ path('TermCondiciones') }}" class="text-lochinvar-600 underline text-sm" target="_blank">términos y condiciones</a>
             </div>
 
             <div class="flex justify-between items-center mb-4">
