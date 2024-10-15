@@ -9,6 +9,7 @@ export default {
         colors: {
             'white': '#ffffff',
             'black': '#000000',
+            'gray': '#efe5e5',
             'timber-green': {
                 '50': '#f3faf7',
                 '100': '#d7f0e5',   
