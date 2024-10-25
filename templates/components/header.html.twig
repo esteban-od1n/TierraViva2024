@@ -18,7 +18,7 @@
         {{ _self.nav_item('/foro', 'Foro', current_path == 'foro') }}
     </nav>
     {% if app.user %}
-    {% include 'components/button.html.twig' with { text: app.user.name, href: '/perfil' } only %}
+    {% include 'components/button.html.twig' with { text: app.user.name, href: '/profile' } only %}
     {% else %}
     {% include 'components/button.html.twig' with { text: 'Registrarse', href: '/registro' } only %}
     {% endif %}

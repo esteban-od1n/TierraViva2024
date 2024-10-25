@@ -85,10 +85,14 @@
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Sección de Discusiones Más Comentadas y la Imagen -->
+<section>
     <div class="flex justify-center mt-8">
-        <div class="w-full max-w-4xl flex space-x-8">
+    <div class="flex justify-center mt-8">
+    <div class="w-full max-w-4xl space-y-8">
+        <!-- Primera Fila: Discusiones más comentadas y Mejores Temas -->
+        <div class="w-full flex space-x-8">
             <!-- Discusiones Más Comentadas -->
             <div class="w-1/2">
                 <h1 class="text-center text-buttercup-500 font-bold text-4xl">Discusiones más comentadas</h1>
@@ -117,7 +121,25 @@
                 </ul>
             </div>
 
-            <!-- Imagen -->
+            <!-- Mejores Temas -->
+            <div class="w-1/2">
+                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
+                <ul class="mt-4 space-y-4">
+                    {% for t in topics %}
+                        <li class="flex items-start">
+                            <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="{{ t.name }}">
+                            <div>
+                                <h3 class="text-timber-green-700 text-lg font-semibold">{{ t.name }}</h3>
+                                <p class="text-sm text-gray-600">Lorem.</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Segunda Fila: Imagen a la derecha -->
+        <div class="w-full flex justify-center">
             <div class="w-1/2">
                 <div class="rounded-xl flex flex-col p-4 gap-4">
                     <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
@@ -133,63 +155,9 @@
             </div>
         </div>
     </div>
-</section>
-		<div class="flex justify-center">
-			<div class="w-full max-w-4xl flex space-x-8">
-				<div class="w-1/2">
-					<h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
-					<ul class="mt-4 space-y-4">
-						{% for t in topics %}
-							<li class="flex items-start">
-								<img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="{{ t.name }}">
-								<div>
-									<h3 class="text-timber-green-700 text-lg font-semibold">{{ t.name }}</h3>
-									<p class="text-sm text-gray-600">Lorem.</p>
-								</div>
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
-				<div class="flex justify-center">
-					<div class="w-50%">
-						<div class="rounded-xl flex flex-col p-4 gap-4">
-							<div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
-								<img src="imgs/world-removebg-preview.png" class="w-70 h-80 mb-4" alt="Mascota">
-								<p class="text-white text-lg text-center">Crea discusiones con otras personas y pregunta tus dudas</p>
-								{% if app.user %}
-									<a href="{{ path('forum_new') }}" class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</a>
-								{% else %}
-									<a href="{{ path('app_login') }}" class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</a>
-								{% endif %}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class="container flex  flex-col mx-auto p-8 gap-4">
-		{% for p in posts %}
-			<a href="{{ path('forum_post', {id: p.id}) }}">
-				<div class="border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
-					<div class="flex items-center justify-between mb-4">
-						<h2 class="text-lg font-heading text-timber-green-800">Author:
-							{{ p.author.name }}</h2>
-						<div class="text-sm text-timber-green-600">
-							Topics:
-							{% for topic in p.topic %}
-								<span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
-							{% endfor %}
-						</div>
-					</div>
-					<div class="text-timber-green-700 text-sm">
-						{{ p.body | slice(0, 200) }}...
-					</div>
-				</div>
-			</a>
-		{% endfor %}
-	</div>
+</div>
 
+</section>
 
 <div class="container mx-auto my-8">
     <!-- Sección de Eventos Especiales -->
