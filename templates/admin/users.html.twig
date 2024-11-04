@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block body %}
-<div class="flex flex-col py-5 gap-3 m-8">
+<div class="flex flex-col py-5 gap-3 m-8 items-align-center">
     <h1 class="font-heading text-6xl text-center text-buttercup-500">Control de Usuarios</h1>
     
     <div class="flex flex-row justify-between items-center mb-5">
@@ -29,7 +29,7 @@
             <tr><td colspan="5" class="text-center text-timber-green-500 font-body text-4xl p-6">Sin elementos...</td></tr>
         {% endif %}
         {% for u in users %}
-        <tr class="border-b border-lochinvar-100 hover:bg-balck">
+        <tr class="text-center border-b border-lochinvar-100 hover:bg-buttercup-200">
             <td class="px-6 py-4 font-body text-sm text-black">{{ u.name }}</td>
             <td class="px-6 py-4 font-body text-sm text-black">{{ u.email }}</td>
             <td class="px-6 py-4 font-body text-sm text-black">
@@ -39,7 +39,7 @@
                     <span class="text-kumera-600 font-bold">Inactivo</span>
                 {% endif %}
             </td>
-            <td class="px-6 py-4 font-body text-sm text-gray-900 flex gap-2">
+            <td class="px-6 py-4 font-body text-sm text-black flex gap-2 justify-center items-center">
                 <a href="{{ path('admin_users_edit', {id: u.id}) }}" class="text-blue-500 hover:underline">
                     {% include 'components/button/default.html.twig' with { text: 'Editar' } %}
                 </a>
@@ -53,7 +53,6 @@
     </table>
 
     <div class="flex justify-between items-center mt-4">
-        <span class="text-sm text-gray-600">Showing 1 to {{ users|length }} entries</span>
         {% include 'components/pager.html.twig' with {
             previous: page > 1? { path: path('admin_users', { page: page - 1 }) },
             current: page,
