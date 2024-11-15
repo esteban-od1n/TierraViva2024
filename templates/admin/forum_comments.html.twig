@@ -1,5 +1,5 @@
 {% extends 'admin/base.html.twig' %}
-
+{% block bienvenida %}{% endblock %}  {# Esto ocultará la sección de bienvenida en esta página #}
 {% macro nav_item(ref, text, is_active = false) %}
 {% set current_path = app.request.get('_route') -%}
 {% set is_active = current_path == ref %}
