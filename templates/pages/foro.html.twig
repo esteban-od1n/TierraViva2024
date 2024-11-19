@@ -58,7 +58,6 @@
                     {% endfor %}
                 </ul>
             </div>
-
             <!-- Publicaciones -->
             <div class="w-1/2">
                 <h1 class="text-center text-buttercup-500 font-bold text-4xl">Publicaciones</h1>
@@ -67,7 +66,7 @@
                     <a href="{{ path('forum_post', {id: p.id}) }}">
                         <div class="border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
                             <div class="flex items-center justify-between mb-4">
-                                <h2 class="text-lg font-heading text-timber-green-800">Author: {{ p.author.name }}</h2>
+                                <h2 class="text-lg font-heading text-timber-green-800">Autor: {{ p.author.name }}</h2>
                                 <div class="text-sm text-timber-green-600">
                                     Topics:
                                     {% for topic in p.topic %}
