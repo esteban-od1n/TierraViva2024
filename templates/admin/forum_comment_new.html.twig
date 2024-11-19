@@ -2,11 +2,14 @@
 
 {% block body %}
 <div class="flex flex-col py-5 gap-3 m-8">
-    <h1 class="font-heading text-6xl">Comentar</h1>
+    <h1 class="font-heading text-6xl text-center text-timber-green-500">Comentar</h1>
     {{ form_start(form) }}
-        {{form_row(form.body)}}
-        {{form_row(form.post)}}
-        {{form_row(form.author)}}
+        <label class="block text-timber-green-700 font-semibold">Contenido</label>
+            {{ form_widget(form.body, {'attr': {'class': 'w-full border border-timber-green-300 rounded-lg focus:ring-2 focus:ring-timber-green-500 focus:outline-none'}}) }}
+        <label class="block text-timber-green-700 font-semibold">Publicación</label>
+            {{ form_widget(form.post, {'attr': {'class': 'w-full border border-timber-green-300 rounded-lg focus:ring-2 focus:ring-timber-green-500 focus:outline-none'}}) }}
+        <label class="block text-timber-green-700 font-semibold">Autor</label>
+            {{ form_widget(form.author, {'attr': {'class': 'w-full border border-timber-green-300 rounded-lg focus:ring-2 focus:ring-timber-green-500 focus:outline-none'}}) }}
         {% include 'components/button/default.html.twig' with {text: 'Comentar'} %}
     {{ form_end(form) }}
 </div>
