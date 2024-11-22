@@ -7,13 +7,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: "`user`")]
 #[ORM\UniqueConstraint(name: "UNIQ_IDENTIFIER_EMAIL", fields: ["email"])]
 #[UniqueEntity(fields: ["email"], message: "There is already an account with this email")]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -39,17 +42,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[Vich\UploadableField(mapping: "userpfp", fileNameProperty: "fileUri", size: "fileSize")]
+    private ?File $profilePicture = null;
+
+    public function setProfilePicture(?File $file = null): void
+    {
+        $this->profilePicture = $file;
+    }
+
+    public function getProfilePicture(): ?File
+    {
+        return $this->profilePicture;
+    }
+
     /**
      * @var Collection<int, ForumPost>
      */
-    #[ORM\OneToMany(targetEntity: ForumPost::class, mappedBy: 'author')]
+    #[ORM\OneToMany(targetEntity: ForumPost::class, mappedBy: "author")]
     private Collection $forumPosts;
 
     /**
      * @var Collection<int, ForumComment>
      */
-    #[ORM\OneToMany(targetEntity: ForumComment::class, mappedBy: 'author')]
+    #[ORM\OneToMany(targetEntity: ForumComment::class, mappedBy: "author")]
     private Collection $forumComments;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $fileSize = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fileUri = null;
 
     public function __construct()
     {
@@ -200,6 +222,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $forumComment->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFileSize(): ?int
+    {
+        return $this->fileSize;
+    }
+
+    public function setFileSize(?int $fileSize): static
+    {
+        $this->fileSize = $fileSize;
+
+        return $this;
+    }
+
+    public function getFileUri(): ?string
+    {
+        return $this->fileUri;
+    }
+
+    public function setFileUri(?string $fileUri): static
+    {
+        $this->fileUri = $fileUri;
 
         return $this;
     }

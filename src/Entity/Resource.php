@@ -38,7 +38,7 @@ class Resource
         $this->resourceFile = $file;
     }
 
-    public function getRespirceFile(): ?File
+    public function getResourceFile(): ?File
     {
         return $this->resourceFile;
     }

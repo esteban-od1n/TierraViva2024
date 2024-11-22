@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil [{{app.user.email}}]{% endblock %}
+
+{% block body %}
+<section class="bg-things-pattern py-10">
+    <div class="container mx-auto">
+        <h2 class="text-center text-buttercup-500 font-bold text-3xl mb-8">{{app.user.email}}</h2>
+        <div class="flex justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full flex flex-col items-center">
+                <!-- Foto de perfil -->
+                <div class="flex-shrink-0">
+                    <img src="{{ user.profilePicture|default('/default_user.jpg') }}" alt="Foto de Perfil" class="w-32 h-32 rounded-full border-4 border-buttercup-500 mb-4">
+                </div>
+            </div>
+        </div>
+        <!-- Botón de cerrar sesión -->
+        <div class="flex py-5 justify-center mt-5 gap-3">
+            <a href="{{ path("app_profile_edit") }}" class="btn-outline">Editar</a>
+            <a href="{{ path("app_logout") }}" class="btn-outline">Cerrar sesion</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

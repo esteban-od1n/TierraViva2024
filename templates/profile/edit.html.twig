@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil [{{app.user.email}}]{% endblock %}
+
+{% block body %}
+{{form_start(form)}}
+    {{ form_widget(form) }}
+    <button type="submit">Enviar</button>
+{{form_end(form)}}
+{% endblock %}
