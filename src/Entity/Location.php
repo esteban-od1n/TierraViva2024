@@ -31,7 +31,7 @@ class Location
     /**
      * @var Collection<int, Provider>
      */
-    #[ORM\OneToMany(targetEntity: Provider::class, mappedBy: 'location')]
+    #[ORM\OneToMany(targetEntity: Provider::class, mappedBy: "location")]
     private Collection $providers;
 
     public function __construct()
@@ -120,5 +120,10 @@ class Location
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }

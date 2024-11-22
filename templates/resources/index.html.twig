@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% macro icon_btn(icon, text) %}
+<div class="flex flex-row p-4 font-label items-center gap-2">
+    <i class="fa fa-xl {{icon}}"></i>
+    <span>{{ text }}</span>
+</div>
+{% endmacro %}
+
+{% block body %}
+<div class="flex flex-col items-center">
+    <div class="flex flex-col relative h-3/4 overflow-hidden z-0 w-full h-full min-h-[500px]">
+        <div class="absolute w-full h-full flex flex-col gap-5 items-center justify-center text-center">
+            <img src="{{ asset('/imgs/pille-r-priske-nosotros.jpg') }}" alt="slider image"
+                class="-z-10 brightness-50 scale-110 animate-[smooth-scale_7s_linear_forwards] pointer-events-none object-cover absolute w-full h-full">
+            <p class="font-label text-3xl text-pistachio-400 font-bold uppercase">HERRAMIENTAS Y MÉTODOS</p>
+            <h1 class="font-display text-white text-5xl">Todo lo que necesitas para empezar en la agricultura urbana
+            </h1>
+        </div>
+    </div>
+    <div
+        class="flex self-stretch flex-col py-6 relative before:top-0 before:left-0 items-center z-0 gap-3
+    before:w-full before:h-full before:absolute before:bg-things-pattern before:bg-repeat before:bg-center before:-z-10">
+        <h1 class="font-heading text-3xl text-pistachio-500 text-center py-2 px-5 bg-pistachio-50 rounded-3xl">BUSQUEDA
+            POR CATEGORIAS</h1>
+        <div class="flex flex-row justify-center gap-3">
+            {% set icons = [
+                ['fa-info', 'Noticias', path('app_resources', {type: 'new'})],
+                ['fa-brands fa-youtube', 'Videos', path('app_resources', {type: 'video'})],
+                ['fa-film', 'Documentales', path('app_resources', {type: 'documentary'})],
+                ['fa-book', 'Manuales o libros', path('app_resources', {type: 'book'})],
+            ] %}
+            {% for i in icons %}
+            <a class="bg-kumera-500 text-white rounded-xl" href="{{ i[2] }}">
+                {{ _self.icon_btn(i[0], i[1]) }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<section class="py-10 px-20 flex flex-wrap justify-center items-center">
+    {% for i in entities %}
+        {% include 'resources/resource.html.twig' with {title: i.name, body: i.description} %}
+    {% endfor %}
+</section>
+
+{% endblock %}

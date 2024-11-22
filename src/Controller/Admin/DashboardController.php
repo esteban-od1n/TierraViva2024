@@ -6,6 +6,10 @@ use App\Entity\ForumPost;
 use App\Entity\ForumComment;
 use App\Entity\Provider;
 use App\Entity\Product;
+use App\Entity\Location;
+use App\Entity\Resource;
+use App\Entity\ForumTopics;
+use App\Entity\ProviderCategories;
 use App\Entity\Events;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -30,10 +34,20 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud("Usuarios", "fas fa-user", User::class);
-        yield MenuItem::linkToCrud("Foro", "fas fa-newspaper", ForumPost::class);
-        yield MenuItem::linkToCrud("Comentarios", "fas fa-comment", ForumComment::class);
-        yield MenuItem::linkToCrud("Proveedores", "fas fa-bell-concierge", Provider::class);
-        yield MenuItem::linkToCrud("Productos", "fas fa-barcode", Product::class);
+        yield MenuItem::subMenu("Foro", "fas fa-newspaper")->setSubItems([
+            MenuItem::linkToCrud("Posts", "fas fa-newspaper", ForumPost::class),
+            MenuItem::linkToCrud("Comentarios", "fas fa-comment", ForumComment::class),
+        ]);
+        yield MenuItem::subMenu("Proveedores", "fas fa-bell-concierge")->setSubItems([
+            MenuItem::linkToCrud("Marcas", "fas fa-bell-concierge", Provider::class),
+            MenuItem::linkToCrud("Lugares", "fas fa-map", Location::class),
+            MenuItem::linkToCrud("Productos", "fas fa-barcode", Product::class),
+        ]);
         yield MenuItem::linkToCrud("Eventos", "fas fa-calendar-days", Events::class);
+        yield MenuItem::linkToCrud("Recursos", "fas fa-photo-film", Resource::class);
+        yield MenuItem::subMenu("Categorias", "fas fa-bell-tag")->setSubItems([
+            MenuItem::linkToCrud("Proveedores", "fas fa-bell-concierge", ForumTopics::class),
+            MenuItem::linkToCrud("Foro", "fas fa-newspaper", ProviderCategories::class),
+        ]);
     }
 }

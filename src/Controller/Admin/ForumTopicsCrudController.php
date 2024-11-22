@@ -2,23 +2,27 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Provider;
+use App\Entity\ForumTopics;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ProviderCrudController extends AbstractCrudController
+class ForumTopicsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Provider::class;
+        return ForumTopics::class;
     }
 
+    /*
     public function configureFields(string $pageName): iterable
     {
-        return ["name", "visible", AssociationField::new("location")];
+        return [
+            IdField::new('id'),
+            TextField::new('title'),
+            TextEditorField::new('description'),
+        ];
     }
+    */
 }

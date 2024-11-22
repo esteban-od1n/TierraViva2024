@@ -1,6 +1,6 @@
-{% set current_path = app.request.get('_route') -%}
-{% macro nav_item(ref, text, is_active = false) %}
-<a class="font-label text-xl {{ is_active? 'text-pistachio-400' }}" href={{ ref }}>{{ text }}</a>
+{% macro nav_item(route, text) %}
+{% set current_route = app.request.get('_route') -%}
+<a class="font-label text-xl {{ current_route == route? 'text-pistachio-400' }}" href={{ path(route) }}>{{ text }}</a>
 {% endmacro -%}
 
 <header class="flex flex-wrap items-center bg-timber-green-900 py-3 px-10 justify-between">
@@ -20,11 +20,13 @@
     <!-- Navbar -->
     <nav id="navbar" class="hidden lg:flex flex-col lg:flex-row items-center gap-4 lg:gap-6 text-white lg:justify-center w-full lg:w-auto mt-4 lg:mt-0">
         <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 text-center">
-            {{ _self.nav_item('/', 'Inicio', current_path == 'index') }}
-            {{ _self.nav_item('/recursos', 'Recursos', current_path == 'resources') }}
+            {{ _self.nav_item('app_index', 'Inicio') }}
+            {{ _self.nav_item('app_resources', 'Recursos') }}
+            {{ _self.nav_item('app_map', 'Mapa Interactivo') }}
+            {#
             {{ _self.nav_item('/mapa', 'Mapa Interactivo', current_path == 'map') }}
             {{ _self.nav_item('/providers', 'Proveedores', current_path == 'providers') }}
-            {{ _self.nav_item('/foro', 'Foro', current_path == 'foro') }}
+            {{ _self.nav_item('/foro', 'Foro', current_path == 'foro') }} #}
         </div>
         <div class="flex flex-col lg:flex-row items-center gap-2 mt-4 lg:mt-0 lg:ml-4 w-auto">
             {% if app.user %}
