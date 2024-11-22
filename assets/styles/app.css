@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn-outline {
+        @apply flex flex-row gap-2 items-center bg-transparent border-2 border-pistachio-400 text-pistachio-400 px-6 py-3 font-label rounded-xl cursor-pointer;
+    }
+    .btn-outline-pill {
+        @apply flex flex-row gap-2 items-center bg-transparent border-2 border-pistachio-400 text-pistachio-400 px-6 py-3 font-label cursor-pointer rounded-full;
+    }
+}
