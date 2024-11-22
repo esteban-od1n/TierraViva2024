@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    /**
+     * @var Collection<int, ForumPost>
+     */
+    #[ORM\OneToMany(targetEntity: ForumPost::class, mappedBy: 'author')]
+    private Collection $forumPosts;
+
+    /**
+     * @var Collection<int, ForumComment>
+     */
+    #[ORM\OneToMany(targetEntity: ForumComment::class, mappedBy: 'author')]
+    private Collection $forumComments;
+
+    public function __construct()
+    {
+        $this->forumPosts = new ArrayCollection();
+        $this->forumComments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +140,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ForumPost>
+     */
+    public function getForumPosts(): Collection
+    {
+        return $this->forumPosts;
+    }
+
+    public function addForumPost(ForumPost $forumPost): static
+    {
+        if (!$this->forumPosts->contains($forumPost)) {
+            $this->forumPosts->add($forumPost);
+            $forumPost->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForumPost(ForumPost $forumPost): static
+    {
+        if ($this->forumPosts->removeElement($forumPost)) {
+            // set the owning side to null (unless already changed)
+            if ($forumPost->getAuthor() === $this) {
+                $forumPost->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ForumComment>
+     */
+    public function getForumComments(): Collection
+    {
+        return $this->forumComments;
+    }
+
+    public function addForumComment(ForumComment $forumComment): static
+    {
+        if (!$this->forumComments->contains($forumComment)) {
+            $this->forumComments->add($forumComment);
+            $forumComment->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForumComment(ForumComment $forumComment): static
+    {
+        if ($this->forumComments->removeElement($forumComment)) {
+            // set the owning side to null (unless already changed)
+            if ($forumComment->getAuthor() === $this) {
+                $forumComment->setAuthor(null);
+            }
+        }
 
         return $this;
     }

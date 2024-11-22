@@ -2,6 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ForumPost;
+use App\Entity\ForumComment;
+use App\Entity\Provider;
+use App\Entity\Product;
+use App\Entity\Events;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -24,7 +29,11 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard("Dashboard", "fa fa-home");
         yield MenuItem::linkToCrud("Usuarios", "fas fa-user", User::class);
+        yield MenuItem::linkToCrud("Foro", "fas fa-newspaper", ForumPost::class);
+        yield MenuItem::linkToCrud("Comentarios", "fas fa-comment", ForumComment::class);
+        yield MenuItem::linkToCrud("Proveedores", "fas fa-bell-concierge", Provider::class);
+        yield MenuItem::linkToCrud("Productos", "fas fa-barcode", Product::class);
+        yield MenuItem::linkToCrud("Eventos", "fas fa-calendar-days", Events::class);
     }
 }
