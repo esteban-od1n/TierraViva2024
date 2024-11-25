@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="flex justify-center py-5">
+    <div class="flex items-center gap-4">
+        <!-- Buscador centrado -->
+        <input type="text" placeholder="Buscar producto" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
+
+        <!-- Botón Buscar -->
+        <button class="bg-pistachio-500 hover:bg-pistachio-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+            Buscar
+        </button>
+
+        <!-- Botón Agregar productos -->
+        <a href="/vistaAgregarProductos" type="submit" class="bg-timber-green-500 hover:bg-timber-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+            Agregar productos
+        </a>
+    </div>
+</div>
+
+<div class="flex flex-col py-5 gap-3 items-center ">
+    <h1 class="font-heading text-3xl text-pistachio-500 text-center">BUSQUEDA POR CATEGORIAS</h1>
+    <div class="flex flex-row gap-3 cursor-pointer ">
+        {% for cat in categories %}
+            {% include 'providers/mini-card.html.twig' with { text: cat.name, img: 'imgs/cardamom.png', href: path("app_providers", {type: cat.name}) } only %}
+        {% endfor %}
+        {# {% include 'providers/mini-card.html.twig' with { text: 'Semillas', img: 'imgs/cardamom.png' } only %}
+        {% include 'providers/mini-card.html.twig' with { text: 'Plantas', img: 'imgs/peppercorn.png' } only %}
+        {% include 'providers/mini-card.html.twig' with { text: 'Frutas', img: 'imgs/fruits.png' } only %}
+        {% include 'providers/mini-card.html.twig' with { text: 'Verduras', img: 'imgs/paprika.png' } only %}
+        {% include 'providers/mini-card.html.twig' with { text: 'Herramientas', img: 'imgs/trimming.png' } only %} #}
+    </div>
+</div>
+
+<section class="py-10 text-center">
+  <h2 class="text-4xl font-bold mb-10 text-kumera-500">Más Vendidos</h2>
+  <div class="flex flex-wrap justify-center gap-6">
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/mermelada.png" alt="Mermelada de Fresa" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-black">Mermelada de Fresa</div>
+        <div class="text-lg font-bold text-green-500">$500</div>
+        <button class="mt-4 bg-pistachio-500 text-white py-2 px-4 rounded-lg hover:bg-timber-green-600">Comprar</button>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/arandanos.png" alt="Arándanos Orgánicos" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-black">Arándanos Orgánicos</div>
+        <div class="text-lg font-bold text-green-500">$600</div>
+        <button class="mt-4 bg-pistachio-500 text-white py-2 px-4 rounded-lg hover:bg-timber-green-600">Comprar</button>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+      <img class="rounded-lg w-full h-48 object-cover" src="imgs/cookies.png" alt="Galletas Caseras" />
+      <div class="mt-4">
+        <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div class="text-black">Galletas Caseras</div>
+        <div class="text-lg font-bold text-green-500">$400</div>
+        <button class="mt-4 bg-pistachio-500 text-white py-2 px-4 rounded-lg hover:bg-timber-green-600">Comprar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Nuevos productos</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+            <img class="rounded-lg w-full h-48 object-cover" src="imgs/fresasor.png" alt="Fresas Orgánicas" />
+            <div class="mt-4">
+                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+                <div class="text-gray-700">Fresas Orgánicas</div>
+                <div class="text-lg font-bold text-green-500">$500</div>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+            <img class="rounded-lg w-full h-48 object-cover" src="imgs/elote.png" alt="Maíz Dulce" />
+            <div class="mt-4">
+                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+                <div class="text-gray-700">Maíz Dulce</div>
+                <div class="text-lg font-bold text-green-500">$600</div>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+            <img class="rounded-lg w-full h-48 object-cover" src="imgs/miel.png" alt="Miel Orgánica" />
+            <div class="mt-4">
+                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+                <div class="text-gray-700">Miel Orgánica</div>
+                <div class="text-lg font-bold text-green-500">$500</div>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
+            <img class="rounded-lg w-full h-48 object-cover" src="imgs/pera.png" alt="Pera Dulce" />
+            <div class="mt-4">
+                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
+                <div class="text-gray-700">Pera Dulce</div>
+                <div class="text-lg font-bold text-green-500">$600</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
