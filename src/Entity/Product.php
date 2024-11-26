@@ -20,7 +20,7 @@ class Product
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\ManyToOne(inversedBy: "products")]
     private ?Provider $provider = null;
 
     #[ORM\Column]

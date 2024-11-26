@@ -18,7 +18,7 @@ class Provider
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'providers')]
+    #[ORM\ManyToOne(inversedBy: "providers")]
     private ?Location $location = null;
 
     #[ORM\Column]
@@ -27,13 +27,13 @@ class Provider
     /**
      * @var Collection<int, ProviderCategories>
      */
-    #[ORM\ManyToMany(targetEntity: ProviderCategories::class, inversedBy: 'providers')]
+    #[ORM\ManyToMany(targetEntity: ProviderCategories::class, inversedBy: "providers")]
     private Collection $categories;
 
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'provider')]
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: "provider")]
     private Collection $products;
 
     public function __construct()
@@ -135,5 +135,10 @@ class Provider
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

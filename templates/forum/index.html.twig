@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<!-- section class="bg-white py-10 items-center">
+	    <h2 class="text-center text-buttercup-500 font-bold text-3xl">Los más populares 🔥</h2>
+	    <div class="flex space-x-4 overflow-x-auto mt-6 px-4 justify-center">
+	        <div class="min-w-[200px] max-w-[200px]">
+	            <img src="imgs/cultivo-urbano.jpg" class="rounded-lg" alt="Cultivo Urbano">
+	            <div class="text-center mt-2">
+	                <h3 class="text-timber-green-800 text-lg font-semibold">Cultivo Urbano</h3>
+	            </div>
+	        </div>
+	        <div class="min-w-[200px] max-w-[200px]">
+	            <img src="imgs/plaza.jpg" class="rounded-lg" alt="plaza">
+	            <div class="text-center mt-2">
+	                <h3 class="text-timber-green-800 text-lg font-semibold">Plaza</h3>
+	            </div>
+	        </div>
+	        <div class="min-w-[200px] max-w-[200px]">
+	            <img src="imgs/encuentros.jpg" class="rounded-lg" alt="encuentros">
+	            <div class="text-center mt-2">
+	                <h3 class="text-timber-green-800 text-lg font-semibold">Encuentros</h3>
+	            </div>
+	        </div>
+	    </div>
+	</section -->
+
+<!-- Sección de Buscador de Discusión -->
+<section class="bg-white py-10">
+    <!-- Barra de búsqueda -->
+    <div class="flex justify-center py-5">
+        <div class="flex items-center gap-4">
+            <!-- Campo de búsqueda -->
+            <input type="text" placeholder="Buscar discusión" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
+
+				<!-- Botón Buscar -->
+				<button class="bg-pistachio-500 hover:bg-pistachio-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+					Buscar
+				</button>
+			</div>
+		</div>
+
+    <!-- Sección de Mejores Temas y Publicaciones -->
+    <div class="flex justify-center">
+        <div class="w-full max-w-4xl flex space-x-8">
+            <!-- Mejores Temas con fondo -->
+            <div class="w-1/2 bg-timber-green-100 p-4 rounded-lg shadow-md">
+                <h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
+                <ul class="mt-4 space-y-4">
+                    {% for t in topics %}
+                    <li class="flex items-start">
+                        <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="{{ t.name }}">
+                        <div>
+                            <h3 class="text-timber-green-700 text-lg font-semibold">{{ t.name }}</h3>
+                            <p class="text-sm text-gray-600">Lorem.</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Imagen -->
+            <div class="w-1/2">
+                <div class="rounded-xl flex flex-col p-4 gap-4">
+                    <div class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center">
+                        <img src="imgs/world-removebg-preview.png" class="w-70 h-80 mb-4" alt="Mascota">
+                        <p class="text-white text-lg text-center">Crea discusiones con otras personas y pregunta tus dudas</p>
+                        {% if app.user %}
+                        <a href="" class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</a>
+                        {% else %}
+                        <a href="{{ path('app_login') }}" class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Comenzar una nueva discusión</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="flex justify-center mt-8">
+        <div class="w-full max-w-4xl space-y-8">
+            <!-- Primera Fila: Discusiones más comentadas y Mejores Temas -->
+            <div class="w-full flex space-x-8">
+                <!-- Discusiones Más Comentadas -->
+                <!-- <div class="w-1/2">
+                    <h1 class="text-center text-buttercup-500 font-bold text-4xl">Discusiones más comentadas</h1>
+                    <ul class="mt-4 space-y-4">
+                        <li class="flex items-start">
+                            <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="Sostenibilidad">
+                            <div>
+                                <h3 class="text-timber-green-700 text-lg font-semibold">Sostenibilidad y medio ambiente</h3>
+                                <p class="text-sm text-gray-600">Explora cómo podemos cuidar el planeta.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <img src="imgs/tecnica.jpg" class="w-16 h-16 rounded-full mr-4" alt="Técnicas avanzadas">
+                            <div>
+                                <h3 class="text-timber-green-700 text-lg font-semibold">Técnicas avanzadas de cultivos</h3>
+                                <p class="text-sm text-gray-600">Conoce nuevas técnicas</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <img src="imgs/person.jpg" class="w-16 h-16 rounded-full mr-4" alt="Personas">
+                            <div>
+                                <h3 class="text-timber-green-700 text-lg font-semibold">Problemas y soluciones</h3>
+                                <p class="text-sm text-gray-600">Aprende a solucionar problemas ambientales.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <!-- Publicaciones -->
+                <div class="w-full">
+                    <h1 class="text-center text-buttercup-500 font-bold text-4xl mb-6">Publicaciones</h1>
+                    <div class="space-y-4">
+                        {% for p in posts %}
+                        <a href="{{ path('app_forum_post', {post: p.id})}}">
+                            <div class="border border-timber-green-500 rounded-lg shadow-lg p-4 bg-white">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h2 class="text-lg font-heading text-timber-green-800">Autor: {{ p.author.email|default("") }}</h2>
+                                    {% if p.topics|length > 0 %}
+                                    <div class="text-sm text-timber-green-600">
+                                        Topics:
+                                        {% for topic in p.topics %}
+                                            <span class="px-2 py-1 bg-timber-green-100 text-timber-green-900 rounded-md">{{ topic.name }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="text-timber-green-700 text-sm">
+                                    {{ p.body | slice(0, 200) }}...
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<div class="container mx-auto my-8">
+    <!-- Sección de Eventos Especiales -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold text-center text-timber-green-700 mb-6">Eventos Especiales</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-pistachio-100 shadow-lg rounded-lg p-6 flex flex-col">
+                <h3 class="text-lg font-bold text-lochinvar-700">Día Internacional de la Tierra</h3>
+                <p class="text-gray-600">22 de Abril</p>
+                <p class="text-gray-600">Es un momento para reflexionar sobre la importancia de proteger nuestro hogar, el planeta Tierra.</p>
+            </div>
+            <div class="bg-pancho-100 shadow-lg rounded-lg p-6 flex flex-col">
+                <h3 class="text-lg font-bold text-lochinvar-700">Día Internacional de la Tierra</h3>
+                <p class="text-gray-600">22 de Abril</p>
+                <p class="text-gray-600">Es un momento para reflexionar sobre la importancia de proteger nuestro hogar, el planeta Tierra.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Reuniones Frecuentes -->
+    <!-- <div>
+        <h2 class="text-2xl font-semibold text-center text-buttercup-700 mb-6">Reuniones Frecuentes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col items-center bg-gradient-to-b from-timber-green-900 to-lochinvar-500 rounded-lg shadow-lg p-4">
+                <img src="imgs/vivero.png" alt="El Vivero de Susana" class="rounded-lg mb-4">
+                <h3 class="font-semibold text-buttercup-500 mb-2 text-center">El Vivero de Susana</h3>
+                <p class="text-gray-600 mb-2 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="text-white text-center">Abierto: Sábados 10 AM</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+{% endblock %}

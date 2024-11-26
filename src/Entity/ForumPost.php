@@ -19,7 +19,7 @@ class ForumPost
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToOne(inversedBy: 'forumPosts')]
+    #[ORM\ManyToOne(inversedBy: "forumPosts")]
     private ?User $author = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -31,19 +31,26 @@ class ForumPost
     /**
      * @var Collection<int, ForumComment>
      */
-    #[ORM\OneToMany(targetEntity: ForumComment::class, mappedBy: 'post')]
+    #[ORM\OneToMany(targetEntity: ForumComment::class, mappedBy: "post")]
     private Collection $forumComments;
 
     /**
      * @var Collection<int, ForumTopics>
      */
-    #[ORM\ManyToMany(targetEntity: ForumTopics::class, inversedBy: 'forumPosts')]
+    #[ORM\ManyToMany(targetEntity: ForumTopics::class, inversedBy: "forumPosts")]
     private Collection $topics;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    private Collection $likes;
 
     public function __construct()
     {
         $this->forumComments = new ArrayCollection();
         $this->topics = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +156,35 @@ class ForumPost
     public function removeTopic(ForumTopics $topic): static
     {
         $this->topics->removeElement($topic);
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): static
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }

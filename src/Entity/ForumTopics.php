@@ -21,7 +21,7 @@ class ForumTopics
     /**
      * @var Collection<int, ForumPost>
      */
-    #[ORM\ManyToMany(targetEntity: ForumPost::class, mappedBy: 'topics')]
+    #[ORM\ManyToMany(targetEntity: ForumPost::class, mappedBy: "topics")]
     private Collection $forumPosts;
 
     public function __construct()
@@ -71,5 +71,10 @@ class ForumTopics
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }
