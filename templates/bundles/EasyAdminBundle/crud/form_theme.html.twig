@@ -1,0 +1,10 @@
+{% extends '@!EasyAdmin/crud/form_theme.html.twig' %}
+
+{% block position_row %}
+    <div class="col-md-9 col-xxl-7">
+        {{ form_label(form) }}
+        {{ form_widget(form[0]) }}
+        {{ form_widget(form[1]) }}
+        <div {{ stimulus_controller('map') }}></div>
+    </div>
+{% endblock %}

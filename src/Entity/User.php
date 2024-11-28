@@ -47,6 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setProfilePicture(?File $file = null): void
     {
+        $this->fileSize = $file->getSize();
         $this->profilePicture = $file;
     }
 
@@ -154,12 +155,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function isVerified(): bool
+    public function getIsVerified(): bool
     {
         return $this->isVerified;
     }
 
-    public function setVerified(bool $isVerified): static
+    public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
 
@@ -253,5 +254,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->email;
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            "id" => $this->id,
+            "email" => $this->email,
+            "password" => $this->password,
+            "isVerified" => $this->isVerified,
+        ];
     }
 }

@@ -19,6 +19,11 @@ class ProviderCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return ["name", "visible", AssociationField::new("location")];
+        return [
+            "name",
+            "visible",
+            AssociationField::new("location"),
+            AssociationField::new("categories"),
+        ];
     }
 }

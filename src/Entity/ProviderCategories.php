@@ -21,7 +21,7 @@ class ProviderCategories
     /**
      * @var Collection<int, Provider>
      */
-    #[ORM\ManyToMany(targetEntity: Provider::class, mappedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Provider::class, mappedBy: "categories")]
     private Collection $providers;
 
     public function __construct()
@@ -71,5 +71,10 @@ class ProviderCategories
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

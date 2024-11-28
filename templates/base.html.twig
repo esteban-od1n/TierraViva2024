@@ -10,14 +10,15 @@
             href="https://fonts.googleapis.com/css2?family=Lalezar&family=Langar&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
-    <body>
+    <body class="font-body flex flex-col h-screen">
         {% include "header.html.twig" %}
         {% block body %}{% endblock %}
     </body>

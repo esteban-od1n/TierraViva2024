@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-<script src="{{ asset('slider.js') }}" type="module" defer></script>
+{% block importmap %}
+    {{ importmap(['app'])}}
 {% endblock %}
 
 {% block body %}

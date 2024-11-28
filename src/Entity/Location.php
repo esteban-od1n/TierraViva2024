@@ -28,6 +28,19 @@ class Location
     #[ORM\Column]
     private ?float $long = null;
 
+    public function setPosition(array $postion): self
+    {
+        $this->lat = $postion[0];
+        $this->long = $postion[1];
+
+        return $this;
+    }
+
+    public function getPosition(): array
+    {
+        return [$this->lat, $this->long];
+    }
+
     /**
      * @var Collection<int, Provider>
      */
