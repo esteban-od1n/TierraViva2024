@@ -15,6 +15,7 @@ class MapField implements FieldInterface
         return (new self())
             ->setFormType(PositionType::class)
             ->setLabel($label)
+            ->setTemplatePath("/admin/fields/location.html.twig")
             ->setProperty($propertyName);
     }
 }

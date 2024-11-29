@@ -1,10 +1,10 @@
 {% extends '@!EasyAdmin/crud/form_theme.html.twig' %}
 
 {% block position_row %}
-    <div class="col-md-9 col-xxl-7">
+    <div class="col-md-9 col-xxl-7" {{ stimulus_controller('map-input') }}>
         {{ form_label(form) }}
-        {{ form_widget(form[0]) }}
-        {{ form_widget(form[1]) }}
-        <div {{ stimulus_controller('map') }}></div>
+        {{ form_widget(form[0], {attr: stimulus_target('map-input', 'lat').toArray() }) }}
+        {{ form_widget(form[1], {attr: stimulus_target('map-input', 'long').toArray() }) }}
+        <div {{ stimulus_target('map-input', 'container') }} style="width: 400px; height: 400px"></div>
     </div>
 {% endblock %}

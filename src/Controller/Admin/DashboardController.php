@@ -27,6 +27,11 @@ class DashboardController extends AbstractDashboardController
         return $this->render("admin/dashboard.html.twig");
     }
 
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addAssetMapperEntry("admin");
+    }
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()->setTitle("TierraViva");

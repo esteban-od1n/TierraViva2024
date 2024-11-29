@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
@@ -36,6 +37,7 @@ class Location
         return $this;
     }
 
+    #[Ignore]
     public function getPosition(): array
     {
         return [$this->lat, $this->long];
@@ -44,6 +46,7 @@ class Location
     /**
      * @var Collection<int, Provider>
      */
+    #[Ignore]
     #[ORM\OneToMany(targetEntity: Provider::class, mappedBy: "location")]
     private Collection $providers;
 
@@ -139,4 +142,9 @@ class Location
     {
         return $this->getName();
     }
+
+    // public function __serialize(): array
+    // {
+    //     return [$this->name, $this->description, $this->getPosition()];
+    // }
 }

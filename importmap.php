@@ -45,4 +45,11 @@ return [
     'tailwindcss' => [
         'version' => '3.4.15',
     ],
+    'leaflet' => [
+        'version' => '1.9.4',
+    ],
+    'leaflet/dist/leaflet.min.css' => [
+        'version' => '1.9.4',
+        'type' => 'css',
+    ],
 ];

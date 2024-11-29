@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MapController extends AbstractController
 {
-    #[Route('/map', name: 'app_map')]
+    #[Route("/map", name: "app_map")]
     public function index(): Response
     {
-        return $this->render('map/index.html.twig', [
-            'controller_name' => 'MapController',
-        ]);
+        return $this->render("map/index.html.twig", []);
     }
 }
