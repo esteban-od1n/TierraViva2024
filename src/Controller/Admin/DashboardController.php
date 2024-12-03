@@ -42,18 +42,45 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud("Usuarios", "fas fa-user", User::class);
         yield MenuItem::subMenu("Foro", "fas fa-newspaper")->setSubItems([
             MenuItem::linkToCrud("Posts", "fas fa-newspaper", ForumPost::class),
-            MenuItem::linkToCrud("Comentarios", "fas fa-comment", ForumComment::class),
+            MenuItem::linkToCrud(
+                "Comentarios",
+                "fas fa-comment",
+                ForumComment::class
+            ),
         ]);
-        yield MenuItem::subMenu("Proveedores", "fas fa-bell-concierge")->setSubItems([
-            MenuItem::linkToCrud("Marcas", "fas fa-bell-concierge", Provider::class),
+        yield MenuItem::subMenu(
+            "Proveedores",
+            "fas fa-bell-concierge"
+        )->setSubItems([
+            MenuItem::linkToCrud(
+                "Marcas",
+                "fas fa-bell-concierge",
+                Provider::class
+            ),
             MenuItem::linkToCrud("Lugares", "fas fa-map", Location::class),
             MenuItem::linkToCrud("Productos", "fas fa-barcode", Product::class),
         ]);
-        yield MenuItem::linkToCrud("Eventos", "fas fa-calendar-days", Events::class);
-        yield MenuItem::linkToCrud("Recursos", "fas fa-photo-film", Resource::class);
-        yield MenuItem::subMenu("Categorias", "fas fa-bell-tag")->setSubItems([
-            MenuItem::linkToCrud("Proveedores", "fas fa-bell-concierge", ForumTopics::class),
-            MenuItem::linkToCrud("Foro", "fas fa-newspaper", ProviderCategories::class),
+        yield MenuItem::linkToCrud(
+            "Eventos",
+            "fas fa-calendar-days",
+            Events::class
+        );
+        yield MenuItem::linkToCrud(
+            "Recursos",
+            "fas fa-photo-film",
+            Resource::class
+        );
+        yield MenuItem::subMenu("Categorias", "fa fa-tags")->setSubItems([
+            MenuItem::linkToCrud(
+                "Proveedores",
+                "fa fa-bell-concierge",
+                ProviderCategories::class
+            ),
+            MenuItem::linkToCrud(
+                "Foro",
+                "fas fa-newspaper",
+                ForumTopics::class
+            ),
         ]);
     }
 }

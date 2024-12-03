@@ -18,8 +18,11 @@
 
         {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
-    <body class="font-body flex flex-col h-screen">
+    <body class="font-body flex flex-col min-h-screen">
         {% include "header.html.twig" %}
-        {% block body %}{% endblock %}
+        <main class="grow">
+            {% block body %}{% endblock %}
+        </main>
+        {% include "footer.html.twig" %}
     </body>
 </html>

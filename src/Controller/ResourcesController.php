@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Resource;
 use App\Enum\ResourceTypes;
 use App\Repository\ResourceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,14 @@ class ResourcesController extends AbstractController
         $result = $query->getQuery()->getResult();
         return $this->render("resources/index.html.twig", [
             "entities" => $result,
+        ]);
+    }
+
+    #[Route("/resources/{resource}", name: "app_resources_resource")]
+    public function resource(Resource $resource): Response
+    {
+        return $this->render("resources/resource.html.twig", [
+            "res" => $resource,
         ]);
     }
 }

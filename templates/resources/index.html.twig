@@ -41,7 +41,7 @@
 
 <section class="py-10 px-20 flex flex-wrap justify-center items-center">
     {% for i in entities %}
-        {% include 'resources/resource.html.twig' with {title: i.name, body: i.description} %}
+        {% include 'resources/item.html.twig' with {title: i.name, body: i.description, href: i.fileUri} %}
     {% endfor %}
 </section>
 
