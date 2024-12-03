@@ -36,9 +36,13 @@ class ProvidersController extends AbstractController
             $providerQuery->setParameter("search", "%$q%");
         }
 
+        $promoted = $prod_repo->findBy([
+            "promote" => true,
+        ]);
         return $this->render("providers/index.html.twig", [
             "categories" => $categories,
             "products" => $providerQuery->getQuery()->execute(),
+            "promoted" => $promoted,
         ]);
     }
 

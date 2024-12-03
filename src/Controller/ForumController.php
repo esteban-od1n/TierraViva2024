@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -21,12 +22,22 @@ class ForumController extends AbstractController
     public function index(
         ForumPostRepository $repo,
         ForumTopicsRepository $topics_repo,
-        EventsRepository $ev_repo
+        EventsRepository $ev_repo,
+        #[MapQueryParameter] ?string $q = null
     ): Response {
+        $query = $repo->createQueryBuilder("p");
+        if ($q) {
+            $query->andWhere($query->expr()->like("p.title", ":search"));
+            $query->setParameter("search", "%$q%");
+        }
+
         return $this->render("forum/index.html.twig", [
-            "topics" => $topics_repo->findAll(),
-            "posts" => $repo->findAll(),
+            // "topics" => $topics_repo->findAll(),
+            "posts" => $query->getQuery()->execute(),
             "events" => $ev_repo->findAll(),
+            "promoted" => $repo->findBy([
+                "promote" => true,
+            ]),
         ]);
     }
 

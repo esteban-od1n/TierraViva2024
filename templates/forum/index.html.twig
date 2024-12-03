@@ -29,16 +29,13 @@
 <section class="bg-white py-10">
     <!-- Barra de búsqueda -->
     <div class="flex justify-center py-5">
-        <div class="flex items-center gap-4">
-            <!-- Campo de búsqueda -->
-            <input type="text" placeholder="Buscar discusión" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
-
-				<!-- Botón Buscar -->
+        <form class="flex items-center gap-4">
+            <input type="text" name="q" placeholder="Buscar discusión" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
 				<button class="bg-pistachio-500 hover:bg-pistachio-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
 					Buscar
 				</button>
-			</div>
-		</div>
+        </form>
+	</div>
 
     <!-- Sección de Mejores Temas y Publicaciones -->
     <div class="flex justify-center">
@@ -47,13 +44,12 @@
             <div class="w-1/2 bg-timber-green-100 p-4 rounded-lg shadow-md">
                 <h1 class="text-center text-buttercup-500 font-bold text-4xl">Mejores Temas</h1>
                 <ul class="mt-4 space-y-4">
-                    {% for t in topics %}
-                    <li class="flex items-start">
-                        <img src="imgs/sostenibilidad.jpg" class="w-16 h-16 rounded-full mr-4" alt="{{ t.name }}">
-                        <div>
-                            <h3 class="text-timber-green-700 text-lg font-semibold">{{ t.name }}</h3>
-                            <p class="text-sm text-gray-600">Lorem.</p>
-                        </div>
+                    {% for t in promoted %}
+                    <li class="flex flex-col items-start">
+                        <a href="{{ path('app_forum_post', {post: t.id})}}">
+                            <h3 class="text-timber-green-700 text-lg font-semibold">{{ t.title }}</h3>
+                            <p class="text-sm text-gray-600">{{ t.author.email }}</p>
+                        </a>
                     </li>
                     {% endfor %}
                 </ul>

@@ -22,6 +22,7 @@ class ResourceCrudController extends AbstractCrudController
             "description",
             ChoiceField::new("type"),
             VichFileField::new("resourceFile"),
+            "promote",
         ];
     }
 }

@@ -65,6 +65,20 @@
 </section> -->
 
 <div class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Destacados</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+    {% for p in promoted %}
+        {% include 'providers/item.html.twig' with {
+            title: p.name,
+            description: p.description,
+            price: p.price,
+            image: vich_uploader_asset(p)
+        } %}
+    {% endfor %}
+    </div>
+</div>
+
+<div class="py-16 text-center">
     <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Nuevos productos</h2>
     <div class="flex flex-wrap justify-center gap-6">
     {% for p in products %}

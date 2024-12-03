@@ -49,6 +49,9 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $fileUri = null;
 
+    #[ORM\Column]
+    private ?bool $promote = null;
+
     public function getFileSize(): ?int
     {
         return $this->fileSize;
@@ -122,6 +125,18 @@ class Product
     public function setPrice(float $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function isPromote(): ?bool
+    {
+        return $this->promote;
+    }
+
+    public function setPromote(bool $promote): static
+    {
+        $this->promote = $promote;
 
         return $this;
     }

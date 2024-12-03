@@ -39,7 +39,23 @@
     </div>
 </div>
 
-<section class="py-10 px-20 flex flex-wrap justify-center items-center gap-4">
+<div class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10 text-buttercup-500">DESTACADOS</h2>
+    <div class="flex flex-wrap justify-center gap-6">
+        {% for i in promoted %}
+            {% include 'resources/item.html.twig' with {
+                title: i.name,
+                body: i.description,
+                href: vich_uploader_asset(i),
+                type: i.type
+            } %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Recursos</h2>
+    <div class="flex flex-wrap justify-center gap-6">
     {% for i in entities %}
         {% include 'resources/item.html.twig' with {
             title: i.name,
@@ -48,7 +64,8 @@
             type: i.type
         } %}
     {% endfor %}
-</section>
+    </div>
+</div>
 
 <section class="bg-pistachio-100 py-10 w-full">
     <div class="flex justify-center gap-6">

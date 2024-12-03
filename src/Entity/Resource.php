@@ -49,6 +49,9 @@ class Resource
     #[ORM\Column(nullable: true)]
     private ?int $fileSize = null;
 
+    #[ORM\Column]
+    private ?bool $promote = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +125,18 @@ class Resource
     public function setFileSize(?int $fileSize): static
     {
         $this->fileSize = $fileSize;
+
+        return $this;
+    }
+
+    public function isPromote(): ?bool
+    {
+        return $this->promote;
+    }
+
+    public function setPromote(bool $promote): static
+    {
+        $this->promote = $promote;
 
         return $this;
     }

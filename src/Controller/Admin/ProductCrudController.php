@@ -22,6 +22,7 @@ class ProductCrudController extends AbstractCrudController
             "price",
             AssociationField::new("provider"),
             VichImageField::new("productImage"),
+            "promote",
         ];
     }
 }

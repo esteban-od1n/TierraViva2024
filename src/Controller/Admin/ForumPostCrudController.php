@@ -38,6 +38,7 @@ class ForumPostCrudController extends AbstractCrudController
             "body",
             AssociationField::new("author"),
             AssociationField::new("topics"),
+            "promote",
         ];
     }
 }

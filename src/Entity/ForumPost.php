@@ -46,6 +46,9 @@ class ForumPost
     #[ORM\ManyToMany(targetEntity: User::class)]
     private Collection $likes;
 
+    #[ORM\Column]
+    private ?bool $promote = null;
+
     public function __construct()
     {
         $this->forumComments = new ArrayCollection();
@@ -185,6 +188,18 @@ class ForumPost
     public function removeLike(User $like): static
     {
         $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function isPromote(): ?bool
+    {
+        return $this->promote;
+    }
+
+    public function setPromote(bool $promoted): static
+    {
+        $this->promote = $promoted;
 
         return $this;
     }

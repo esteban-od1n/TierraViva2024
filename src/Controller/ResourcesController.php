@@ -25,7 +25,11 @@ class ResourcesController extends AbstractController
                 ->setParameter(":t", $enumType);
         }
         $result = $query->getQuery()->getResult();
+        $promoted = $repo->findBy([
+            "promote" => true,
+        ]);
         return $this->render("resources/index.html.twig", [
+            "promoted" => $promoted,
             "entities" => $result,
         ]);
     }
