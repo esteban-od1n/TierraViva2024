@@ -3,11 +3,16 @@ vich_uploader:
 
   mappings:
     resources:
-      uri_prefix: /imgs/products
-      upload_destination: "%kernel.project_dir%/public/imgs/products"
+      uri_prefix: /imgs/resources
+      upload_destination: "%kernel.project_dir%/public/imgs/resources"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
     userpfp:
       uri_prefix: /imgs/userpfp
       upload_destination: "%kernel.project_dir%/public/imgs/userpfp"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    products:
+      uri_prefix: /imgs/products
+      upload_destination: "%kernel.project_dir%/public/imgs/products"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

@@ -2,20 +2,17 @@
 
 {% block body %}
 <div class="flex justify-center py-5">
-    <div class="flex items-center gap-4">
-        <!-- Buscador centrado -->
-        <input type="text" placeholder="Buscar producto" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
+    <form class="flex items-center gap-4">
+        <input type="text" name="q" placeholder="Buscar producto" class="border-2 border-timber-green-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-timber-green-500 focus:border-transparent">
 
-        <!-- Botón Buscar -->
         <button class="bg-pistachio-500 hover:bg-pistachio-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
             Buscar
         </button>
 
-        <!-- Botón Agregar productos -->
-        <a href="/vistaAgregarProductos" type="submit" class="bg-timber-green-500 hover:bg-timber-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+        <a href="{{path('app_product_new')}}" type="submit" class="bg-timber-green-500 hover:bg-timber-green-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
             Agregar productos
         </a>
-    </div>
+    </form>
 </div>
 
 <div class="flex flex-col py-5 gap-3 items-center ">
@@ -70,41 +67,14 @@
 <div class="py-16 text-center">
     <h2 class="text-4xl font-bold mb-10 text-buttercup-500">Nuevos productos</h2>
     <div class="flex flex-wrap justify-center gap-6">
-        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
-            <img class="rounded-lg w-full h-48 object-cover" src="imgs/fresasor.png" alt="Fresas Orgánicas" />
-            <div class="mt-4">
-                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
-                <div class="text-gray-700">Fresas Orgánicas</div>
-                <div class="text-lg font-bold text-green-500">$500</div>
-            </div>
-        </div>
-
-        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
-            <img class="rounded-lg w-full h-48 object-cover" src="imgs/elote.png" alt="Maíz Dulce" />
-            <div class="mt-4">
-                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
-                <div class="text-gray-700">Maíz Dulce</div>
-                <div class="text-lg font-bold text-green-500">$600</div>
-            </div>
-        </div>
-
-        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
-            <img class="rounded-lg w-full h-48 object-cover" src="imgs/miel.png" alt="Miel Orgánica" />
-            <div class="mt-4">
-                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
-                <div class="text-gray-700">Miel Orgánica</div>
-                <div class="text-lg font-bold text-green-500">$500</div>
-            </div>
-        </div>
-
-        <div class="bg-white shadow-lg rounded-lg p-5 max-w-xs">
-            <img class="rounded-lg w-full h-48 object-cover" src="imgs/pera.png" alt="Pera Dulce" />
-            <div class="mt-4">
-                <div class="text-xl font-bold mb-2">Lorem ipsum dolor sit amet.</div>
-                <div class="text-gray-700">Pera Dulce</div>
-                <div class="text-lg font-bold text-green-500">$600</div>
-            </div>
-        </div>
+    {% for p in products %}
+        {% include 'providers/item.html.twig' with {
+            title: p.name,
+            description: p.description,
+            price: p.price,
+            image: vich_uploader_asset(p)
+        } %}
+    {% endfor %}
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="flex flex-col items-center py-10">
+    <h1 class="text-3xl font-bold text-pistachio-500 mb-6">Agregar Nuevo Producto</h1>
+
+    <div style="background-color: #e5e7eb; padding: 30px;" class="shadow-md rounded-lg max-w-lg w-full">
+        {{ form_start(form) }}
+            <!-- Nombre del producto -->
+            <div class="mb-4">
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del producto</label>
+                {{ form_row(form.name) }}
+            </div>
+
+            <!-- Descripción corta del producto -->
+            <div class="mb-4">
+                <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción corta</label>
+                {{ form_row(form.description) }}
+            </div>
+
+            <!-- Foto del producto -->
+            <div class="mb-4">
+                <label for="foto" class="block text-sm font-medium text-gray-700">Foto del producto</label>
+                {{ form_row(form.productImage) }}
+            </div>
+
+            <!-- Selector de categoría -->
+            <!-- <div class="mb-4">
+                <label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
+            </div> -->
+
+            <!-- Precio del producto -->
+            <div class="mb-4">
+                <label for="precio" class="block text-sm font-medium text-gray-700">Precio del producto</label>
+                {{ form_row(form.price) }}
+            </div>
+
+            <!-- Botón de guardar centrado -->
+            <div class="flex justify-center">
+                <button type="submit" class="bg-timber-green-500 text-white p-2 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-300 focus:outline-none">Guardar</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

@@ -15,32 +15,23 @@ class ForumPostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('post_date', null, [
-                'widget' => 'single_text',
+            ->add("title")
+            ->add("body")
+            ->add("author", EntityType::class, [
+                "class" => User::class,
+                "choice_label" => "email",
             ])
-            ->add('body')
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ])
-            ->add('topics', EntityType::class, [
-                'class' => ForumTopics::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-            ->add('likes', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-        ;
+            ->add("topics", EntityType::class, [
+                "class" => ForumTopics::class,
+                "choice_label" => "name",
+                "multiple" => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => ForumPost::class,
+            "data_class" => ForumPost::class,
         ]);
     }
 }

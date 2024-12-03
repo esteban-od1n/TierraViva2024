@@ -2,7 +2,7 @@
 
 {% macro icon_btn(icon, text) %}
 <div class="flex flex-row p-4 font-label items-center gap-2">
-    <i class="fa fa-xl {{icon}}"></i>
+    <i class="fa-regular fa-xl {{icon}}"></i>
     <span>{{ text }}</span>
 </div>
 {% endmacro %}
@@ -39,10 +39,33 @@
     </div>
 </div>
 
-<section class="py-10 px-20 flex flex-wrap justify-center items-center">
+<section class="py-10 px-20 flex flex-wrap justify-center items-center gap-4">
     {% for i in entities %}
-        {% include 'resources/item.html.twig' with {title: i.name, body: i.description, href: i.fileUri} %}
+        {% include 'resources/item.html.twig' with {
+            title: i.name,
+            body: i.description,
+            href: vich_uploader_asset(i),
+            type: i.type
+        } %}
     {% endfor %}
 </section>
 
+<section class="bg-pistachio-100 py-10 w-full">
+    <div class="flex justify-center gap-6">
+        <a class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] h-[300px]"
+            href="{{ path('app_providers') }}"
+        >
+            <img src="imgs/semillas.png" class="w-20 h-20 mb-4" alt="Encuentra semillas">
+            <p class="text-white text-lg text-center mb-4">Encuentra semillas en tu localidad</p>
+            <button class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Más información</button>
+        </a>
+        <a class="bg-gradient-to-b from-lochinvar-400 to-timber-green-900 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] h-[300px]"
+            href="{{ path('app_map') }}"
+        >
+            <img src="imgs/planting.png" class="w-20 h-20 mb-4" alt="Participa en un huerto comunitario">
+            <p class="text-white text-lg text-center mb-4">Participa en un huerto comunitario</p>
+            <button class="mt-4 bg-pistachio-600 text-white py-2 px-4 rounded-lg">Más información</button>
+        </a>
+    </div>
+</section>
 {% endblock %}

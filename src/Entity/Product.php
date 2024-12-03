@@ -5,7 +5,10 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -25,6 +28,50 @@ class Product
 
     #[ORM\Column]
     private ?float $price = null;
+
+    #[Vich\UploadableField(mapping: "products", fileNameProperty: "fileUri", size: "fileSize")]
+    private ?File $productImage = null;
+
+    public function setProductImage(?File $file = null): void
+    {
+        $this->fileSize = $file->getSize();
+        $this->productImage = $file;
+    }
+
+    public function getProductImage(): ?File
+    {
+        return $this->productImage;
+    }
+
+    #[ORM\Column(nullable: true)]
+    private ?int $fileSize = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fileUri = null;
+
+    public function getFileSize(): ?int
+    {
+        return $this->fileSize;
+    }
+
+    public function setFileSize(?int $fileSize): static
+    {
+        $this->fileSize = $fileSize;
+
+        return $this;
+    }
+
+    public function getFileUri(): ?string
+    {
+        return $this->fileUri;
+    }
+
+    public function setFileUri(?string $fileUri): static
+    {
+        $this->fileUri = $fileUri;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {

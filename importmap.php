@@ -20,11 +20,11 @@ return [
         'path' => './assets/admin.js',
         'entrypoint' => true,
     ],
-    '@hotwired/stimulus' => [
-        'version' => '3.2.2',
-    ],
     '@symfony/stimulus-bundle' => [
         'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
     ],
     '@fortawesome/fontawesome-free' => [
         'version' => '6.7.1',
@@ -40,7 +40,7 @@ return [
         'version' => '1.1.1',
     ],
     'nanoid/non-secure' => [
-        'version' => '3.3.7',
+        'version' => '5.0.9',
     ],
     'tailwindcss' => [
         'version' => '3.4.15',

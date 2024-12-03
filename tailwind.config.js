@@ -104,7 +104,7 @@ export default {
         },
       },
       backgroundImage: {
-        "things-pattern": "url(/public/imgs/pattern.png)",
+        "things-pattern": "url(/imgs/pattern.png)",
       },
     },
   },

@@ -7,7 +7,6 @@ export default class extends Controller {
 
   connect() {
     this.sliderItemTargets[this.current].classList.remove("hidden");
-    console.log(this.sliderItemTargets);
   }
 
   goNext(ev) {

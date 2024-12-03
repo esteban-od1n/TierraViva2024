@@ -1,4 +1,3 @@
-import './bootstrap.js';
 import "./bootstrap.js";
 /*
  * Welcome to your app's main JavaScript file!
@@ -8,5 +7,5 @@ import "./bootstrap.js";
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-// import "@fortawesome/fontawesome-free/css/all.min.css";
-// import "@fortawesome/fontawesome-free/js/all.js";
+import "@fortawesome/fontawesome-free";
+import "@fortawesome/fontawesome-free/css/fontawesome.min.css";
