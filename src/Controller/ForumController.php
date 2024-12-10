@@ -48,6 +48,7 @@ class ForumController extends AbstractController
         $form = $this->createForm(ForumPostType::class, $post);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setPromote(false);
             $post->setPostDate(new DateTime());
             $em->persist($post);
             $em->flush();
@@ -69,8 +70,10 @@ class ForumController extends AbstractController
     }
 
     #[Route("/forum/{post}/like", name: "app_forum_like")]
-    public function like(ForumPost $post, EntityManagerInterface $manager): Response
-    {
+    public function like(
+        ForumPost $post,
+        EntityManagerInterface $manager
+    ): Response {
         $user = $this->getUser();
         if ($user == null) {
             throw new UnauthorizedHttpException("NO usuario");
@@ -84,6 +87,8 @@ class ForumController extends AbstractController
 
         $manager->persist($post);
         $manager->flush();
-        return $this->redirectToRoute("app_forum_post", ["post" => $post->getId()]);
+        return $this->redirectToRoute("app_forum_post", [
+            "post" => $post->getId(),
+        ]);
     }
 }

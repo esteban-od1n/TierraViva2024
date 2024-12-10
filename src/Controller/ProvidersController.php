@@ -27,12 +27,16 @@ class ProvidersController extends AbstractController
         if ($type) {
             $providerQuery->join("p.provider", "prov");
             $providerQuery->join("prov.categories", "cat");
-            $providerQuery->andWhere($providerQuery->expr()->eq("cat.name", ":type"));
+            $providerQuery->andWhere(
+                $providerQuery->expr()->eq("cat.name", ":type")
+            );
             $providerQuery->setParameter("type", $type);
         }
 
         if ($q) {
-            $providerQuery->andWhere($providerQuery->expr()->like("p.name", ":search"));
+            $providerQuery->andWhere(
+                $providerQuery->expr()->like("p.name", ":search")
+            );
             $providerQuery->setParameter("search", "%$q%");
         }
 
@@ -53,6 +57,7 @@ class ProvidersController extends AbstractController
         $form = $this->createForm(NewProductType::class, $product);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
+            $product->setPromote(true);
             $em->persist($product);
             $em->flush();
             return $this->redirectToRoute("app_providers");
